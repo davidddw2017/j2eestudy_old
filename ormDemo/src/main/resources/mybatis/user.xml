@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.cloud.ormDemo.mybatis.UserMapper">
+  <!-- 实体类 中 与表名字 不同 使用 resultMap 来创建 别名映射！ -->
+  <resultMap type="org.cloud.ormDemo.model.User" id="personMap">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" />
+    <result column="address" property="address" />
+    <result column="age" property="age" />
+  </resultMap>
+  <!-- 查询 所有 数据 测试！ -->
+  <select id="getUserByName" resultMap="personMap" parameterType="long">
+    select * from t_person where id = #{id}
+  </select>
+</mapper>

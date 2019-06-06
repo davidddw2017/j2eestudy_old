@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.cloud.ormDemo.model">
+  <!-- 操作条件： 1：对象与表 2：属性与字段的对应 3：类型的对应,类型默认采用属性的类型，type不写的话 -->
+  <class name="User" table="t_person">
+    <!-- 主键，映射 -->
+    <id name="id" column="id">
+      <generator class="native"></generator>
+    </id>
+
+    <!-- 非主键，映射 -->
+    <property name="name" column="name"></property>
+    <property name="address" column="address"></property>
+    <property name="age" column="age"></property>
+  </class>
+  
+  <sql-query name="getUserByName">
+    <![CDATA[select {p.*} from t_person p where id=:id]]>
+    <return alias="p" class="User"></return>
+  </sql-query>
+</hibernate-mapping>

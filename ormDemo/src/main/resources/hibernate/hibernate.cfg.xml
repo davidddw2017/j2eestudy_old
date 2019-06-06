@@ -1,0 +1,39 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+  <session-factory>
+    <!-- 1:数据连接配置 -->
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://192.168.1.33:3306/mydb</property>
+    <property name="connection.useUnicode">true</property>
+    <property name="connection.characterEncoding">UTF-8</property>
+    <property name="hibernate.connection.username">cloud</property>
+    <property name="hibernate.connection.password">passwd</property>
+
+    <!-- mysql数据库的方言 -->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    
+    <!-- 选择使用C3P0连接池 -->
+    <property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
+    <!-- 连接池中最小连接数 -->
+    <property name="hibernate.c3p0.min_size">5</property>
+    <!-- 连接池中最大连接数 -->
+    <property name="hibernate.c3p0.max_size">20</property>
+    <!-- 设定数据库连接超时时间，以秒为单位。如果连接池中某个数据库连接处于空闲状态且超过timeout秒时，就会从连接池中移除 -->
+    <property name="hibernate.c3p0.timeout">120</property>
+    <!-- 设置数据库 -->
+    <property name="hibernate.c3p0.idle_test_period">3000</property>
+
+    <property name="hibernate.show_sql">true</property>
+    <property name="format_sql">true</property>
+    <property name="hbm2ddl.auto">update</property>
+
+    <!-- 基于annotation的配置 
+    <mapping class="org.cloud.entity.Person"/> -->
+    <!-- 基于hbm.xml配置文件 -->
+    <mapping resource="hibernate/user.hbm.xml" />
+
+  </session-factory>
+</hibernate-configuration>

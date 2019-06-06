@@ -1,0 +1,8 @@
+##ignore this file##
+/target/
+.DS_Store
+**/.eclipse
+**/target/
+/target/
+bin/
+logs/

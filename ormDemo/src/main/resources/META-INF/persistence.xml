@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/2002/xmlspec/dtd/2.10/xmlspec.dtd">
+<persistence version="2.1"
+  xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence                  
+                      http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="psunit1">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>org.cloud.ormDemo.jpa.Person</class>
+    <properties>
+      <!--数据库的方言,告诉JPA当前应用使用的数据库 -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+      <!--jpa的相关的配置信息 -->
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.33:3306/mydb" />
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+      <property name="javax.persistence.jdbc.user" value="cloud" />
+      <property name="javax.persistence.jdbc.password" value="passwd" />
+      <!--是否在控制台打印执行的sql语句 -->
+      <property name="hibernate.show_sql" value="true" />
+
+      <property name="hibernate.connection.provider_class" value="org.hibernate.c3p0.internal.C3P0ConnectionProvider" />
+      <!-- 最小连接数 -->
+      <property name="c3p0.min_size" value="5" />
+      <!-- 最大连接数 -->
+      <property name="c3p0.max_size" value="30" />
+      <!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+      <property name="c3p0.maxIdleTime" value="60" />
+      <!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
+      <property name="c3p0.timeout" value="1800" />
+      <!-- 最大的PreparedStatement的数量 -->
+      <property name="c3p0.max_statements" value="50" />
+      <!-- 每隔120秒检查连接池里的空闲连接 ，单位是秒 -->
+      <property name="c3p0.idle_test_period" value="120" />
+      <!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+      <property name="c3p0.acquire_increment" value="1" />
+      <!-- 是否每次都验证连接是否可用 -->
+      <property name="c3p0.validate" value="false" />
+
+    </properties>
+  </persistence-unit>
+</persistence>
