@@ -9,7 +9,6 @@
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-
   <!-- 配置自动扫描的包 -->
   <context:component-scan base-package="org.cloud.springmvcDemo.controller"></context:component-scan>
 

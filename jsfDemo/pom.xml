@@ -1,26 +1,27 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.cloud</groupId>
     <artifactId>j2eestudy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>struts2Demo</artifactId>
+  <artifactId>jsfDemo</artifactId>
   <packaging>war</packaging>
-  <name>struts2Demo Maven Webapp</name>
+  <name>jsfDemo Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
-      <groupId>org.apache.struts</groupId>
-      <artifactId>struts2-core</artifactId>
-      <version>2.5.20</version>
+      <groupId>com.sun.faces</groupId>
+      <artifactId>jsf-api</artifactId>
+      <version>2.2.19</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.struts</groupId>
-      <artifactId>struts2-convention-plugin</artifactId>
-      <version>2.5.20</version>
+      <groupId>com.sun.faces</groupId>
+      <artifactId>jsf-impl</artifactId>
+      <version>2.2.19</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -30,7 +31,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>struts2Demo</finalName>
+    <finalName>jsfDemo</finalName>
     <plugins>
       <!-- 编码和编译和JDK版本 -->
       <plugin>
