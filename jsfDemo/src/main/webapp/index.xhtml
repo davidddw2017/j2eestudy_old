@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Welcome</title>
+</h:head>
+<h:body>
+	<h:form prependId="false">
+		<h3>Please enter your name and password.</h3>
+		<table>
+			<tr>
+				<td>Name:</td>
+				<td><h:inputText id="name" value="#{user.name}" /></td>
+				<!-- <td><input type="text" jsfc="h:inputText" value="#{user.name}"/></td> -->
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><h:inputSecret id="password" value="#{user.password}" /></td>
+				<!-- <td><input type="password" jsfc="h:inputSecret" value="#{user.password}"/></td> -->
+			</tr>
+		</table>
+		<!-- <p><h:commandButton value="Login" action="welcome"/></p> -->
+		<p>
+			<h:commandButton value="Login">
+				<f:ajax execute="@form" render="out"></f:ajax>
+			</h:commandButton>
+		</p>
+		<h3>
+			<p:outputLabel id="out" value="#{user.greeting}" />
+		</h3>
+		<!-- 显示user的getGreeting方法的返回值 -->
+	</h:form>
+</h:body>
+</html>

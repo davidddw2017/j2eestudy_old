@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/")
 public class LoginController {
-    
+
     @RequestMapping(method = RequestMethod.GET, value = "/index")
-    public String index(ModelMap model){
+    public String index(ModelMap model) {
         model.addAttribute("message", "Spring MVC Web Application!");
         return "index";
     }
@@ -29,7 +29,7 @@ public class LoginController {
     public String index(Model model, HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if("admin".equals(username) && "password".equals(password)) {
+        if ("admin".equals(username) && "password".equals(password)) {
             model.addAttribute("user", username);
             return "welcome";
         } else {

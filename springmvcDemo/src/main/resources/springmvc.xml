@@ -14,8 +14,7 @@
 
   <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
 
-  <bean id="messageSource"
-    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+  <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
     <property name="basename" value="classpath:mess" />
   </bean>
 
