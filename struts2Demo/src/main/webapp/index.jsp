@@ -1,5 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>HomePage</title>
+</head>
 <body>
-<h2>Hello World!</h2>
+Struts2 Web Application!<br/>
+<a href="index">Hello World</a><br/>
+<a href="loginPage">login page</a><br/>
+<a href="student/list">List Student</a><br/>
 </body>
 </html>

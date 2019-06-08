@@ -9,11 +9,14 @@
 
   <package name="default" namespace="/" extends="struts-default">
     <action name="index" class="org.cloud.struts2Demo.action.IndexAction" method="index">
-      <result name="index">/WEB-INF/views/index.jsp</result>
+      <result name="success">/WEB-INF/views/index.jsp</result>
     </action>
     <action name="login" class="org.cloud.struts2Demo.action.LoginAction">
-      <result name="error">/WEB-INF/views/error.jsp</result>
-      <result name="success">/WEB-INF/views/welcome.jsp</result>
+      <result name="error">/WEB-INF/views/login/error.jsp</result>
+      <result name="success">/WEB-INF/views/login/welcome.jsp</result>
+    </action>
+    <action name="loginPage">
+      <result>/WEB-INF/views/login/loginPage.jsp</result>
     </action>
     <action name="*">
       <result>/WEB-INF/views/{1}.jsp</result>
