@@ -1,4 +1,4 @@
-package org.cloud.springmvcDemo.model;
+package org.cloud.struts2Demo.model;
 
 public class Student {
     private Long id;

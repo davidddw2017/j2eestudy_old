@@ -43,7 +43,7 @@ public class StudentController {
 
     @RequestMapping("/save")
     public String save(Student student) {
-        if (student.getId() != 0) {
+        if (student.getId() != null) {
             service.updateStudent(student);
         } else {
             service.addStudent(student);

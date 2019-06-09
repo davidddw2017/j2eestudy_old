@@ -18,9 +18,17 @@
     <action name="loginPage">
       <result>/WEB-INF/views/login/loginPage.jsp</result>
     </action>
-    <action name="*">
-      <result>/WEB-INF/views/{1}.jsp</result>
+  </package>
+  
+  <package name="student" namespace="/student" extends="struts-default">
+    <action name="*" class="org.cloud.struts2Demo.action.StudentAction" method="{1}">
+      <result name="list" >/WEB-INF/views/student/studentList.jsp</result>
+      <result name="save" type="redirect">list</result>
+      <result name="delete" type="redirect">list</result>
+      <result name="update">/WEB-INF/views/student/update.jsp</result>
+      <result name="add">/WEB-INF/views/student/add.jsp</result>
+      <allowed-methods>list,save,preSave,delete</allowed-methods>
     </action>
   </package>
-
+  
 </struts>
