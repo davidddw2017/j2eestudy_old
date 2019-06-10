@@ -14,6 +14,11 @@
       <param-value>classpath:springmvc.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
+    <multipart-config>
+      <max-file-size>20848820</max-file-size>
+      <max-request-size>418018841</max-request-size>
+      <file-size-threshold>1048576</file-size-threshold>
+    </multipart-config>
   </servlet>
 
   <filter>
@@ -37,4 +42,5 @@
     <servlet-name>springDispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+ 
 </web-app>

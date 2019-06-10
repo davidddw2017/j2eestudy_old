@@ -23,7 +23,12 @@
       <property name="paramName" value="lang" />
     </bean>
   </mvc:interceptors>
-
+  
+  <mvc:annotation-driven />
+  <mvc:resources mapping="/static/**" location="/static/" />
+  
+  <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+  <!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />-->
 
   <!-- 配置视图解析器 如何把handler 方法返回值解析为实际的物理视图 -->
   <bean

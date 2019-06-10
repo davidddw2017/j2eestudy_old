@@ -10,5 +10,6 @@ Struts2 Web Application!<br/>
 <a href="index">Hello World</a><br/>
 <a href="loginPage">login page</a><br/>
 <a href="student/list">List Student</a><br/>
+<a href="restStudent">OP Student by JSON</a><br/>
 </body>
 </html>

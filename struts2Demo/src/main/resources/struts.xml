@@ -6,6 +6,7 @@
   <constant name="struts.custom.i18n.resources" value="mess" />
   <constant name="struts.enable.DynamicMethodInvocation" value="false" />
   <constant name="struts.devMode" value="true" />
+  <constant name="struts.action.excludePattern" value="/static/.*?" />
 
   <package name="default" namespace="/" extends="struts-default">
     <action name="index" class="org.cloud.struts2Demo.action.IndexAction" method="index">
@@ -18,6 +19,9 @@
     <action name="loginPage">
       <result>/WEB-INF/views/login/loginPage.jsp</result>
     </action>
+    <action name="restStudent">
+      <result>/WEB-INF/views/student.jsp</result>
+    </action>
   </package>
   
   <package name="student" namespace="/student" extends="struts-default">
@@ -28,6 +32,16 @@
       <result name="update">/WEB-INF/views/student/update.jsp</result>
       <result name="add">/WEB-INF/views/student/add.jsp</result>
       <allowed-methods>list,save,preSave,delete</allowed-methods>
+    </action>
+  </package>
+  
+  <!-- class属性的值对应beans.xml中注入的Action的id名 -->
+  <package name="student_json" namespace="/rest/student" extends="json-default">
+    <action name="*" class="org.cloud.struts2Demo.action.StudentRestAction" method="{1}">
+      <result name="success" type="json">
+        <param name="root">result</param>
+      </result>
+      <allowed-methods>listStudent,deleteStudent,addStudent</allowed-methods>
     </action>
   </package>
   

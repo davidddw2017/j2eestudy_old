@@ -12,4 +12,9 @@ public class IndexController {
         model.addAttribute("message", "Hello World!");
         return "index";
     }
+    
+    @RequestMapping("/restStudent")
+    public String restStudent() {
+    	return "student";
+    }
 }
