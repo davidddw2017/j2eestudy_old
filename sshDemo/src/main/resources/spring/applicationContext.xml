@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:tx="http://www.springframework.org/schema/tx" 
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+  <!-- Beans Declaration -->
+  <import resource="classpath:spring/customBean.xml"/>
+  
+  <!-- 引入jdbc.properties -->
+  <context:property-placeholder location="classpath:jdbc.properties" />
+
+  <!-- 注入c3p0数据源 -->
+  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+    <property name="driverClass" value="${jdbc.driverClass}"></property>
+    <property name="jdbcUrl" value="${jdbc.url}"></property>
+    <property name="user" value="${jdbc.username}"></property>
+    <property name="password" value="${jdbc.password}"></property>
+  </bean>
+  
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"></property>
+
+    <property name="hibernateProperties">
+      <props>
+      <!--  
+        <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+        <prop key="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</prop>
+        <prop key="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</prop>
+      -->
+        <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.format_sql">true</prop>
+        <prop key="hibernate.hbm2ddl.auto">update</prop>
+      </props>
+    </property>
+
+    <property name="annotatedClasses">
+      <list>
+        <value>org.cloud.ssh.entity.Student</value>
+      </list>
+    </property>
+    <!-- 使用通配符配置整个同一路径下的.hbm.xml 
+    <property name="mappingLocations" value="classpath:entity/*.hbm.xml" />-->
+  </bean>
+
+  <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+
+  <tx:advice id="txAdivce" transaction-manager="txManager">
+    <tx:attributes>
+      <tx:method name="get*" read-only="true" />
+      <tx:method name="*" propagation="REQUIRED" />
+    </tx:attributes>
+  </tx:advice>
+
+  <aop:config>
+    <aop:pointcut expression="execution(* org.cloud.ssh.service.*.*(..))" id="pointcut" />
+    <aop:advisor advice-ref="txAdivce" pointcut-ref="pointcut" />
+  </aop:config>
+
+</beans>

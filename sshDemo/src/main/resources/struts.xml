@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" 
+  "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+  <!-- 指定全局国际化资源文件 -->
+  <constant name="struts.custom.i18n.resources" value="mess" />
+  <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+  <constant name="struts.devMode" value="true" />
+  <constant name="struts.action.excludePattern" value="/static/.*?" />
+
+  <package name="default" namespace="/" extends="struts-default">
+    <action name="restStudent">
+      <result>/WEB-INF/views/student.jsp</result>
+    </action>
+  </package>
+  
+  <!-- class属性的值对应beans.xml中注入的Action的id名 -->
+  <package name="student_json" namespace="/rest/student" extends="json-default">
+    <action name="*" class="studentAction" method="{1}">
+      <result name="success" type="json">
+        <param name="root">result</param>
+      </result>
+      <allowed-methods>listStudent,deleteStudent,addStudent</allowed-methods>
+    </action>
+  </package>
+  
+</struts>
