@@ -4,7 +4,6 @@
 
 <hibernate-configuration>
   <session-factory>
-    <!-- 1:数据连接配置 -->
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://192.168.1.33:3306/mydb</property>
     <property name="connection.useUnicode">true</property>
