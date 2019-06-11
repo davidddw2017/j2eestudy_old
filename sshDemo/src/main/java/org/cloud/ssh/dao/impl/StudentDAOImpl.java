@@ -29,7 +29,7 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public List<Student> listStudent() {
         Session session = sessionFactory.openSession();
-        String hql = "from Student s order by s.id desc";
+        String hql = "from Student s order by s.id";
         List<Student> res = session.createQuery(hql, Student.class).list();
         session.close();
         return res;

@@ -34,7 +34,7 @@
 	grant all on mydb.* to 'cloud'@'%' identified by 'passwd' with grant option;
 	flush privileges;
 	use mydb
-	create table t_person 
+	create table t_student 
 	(id int primary key auto_increment, 
 	name varchar(50) not null, 
 	address varchar(100) not null,
