@@ -9,7 +9,6 @@ public class LoginBean {
 
     public LoginBean() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**

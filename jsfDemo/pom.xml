@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.cloud</groupId>
     <artifactId>j2eestudy</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
   <artifactId>jsfDemo</artifactId>
   <packaging>war</packaging>
@@ -42,18 +42,5 @@
   </dependencies>
   <build>
     <finalName>jsfDemo</finalName>
-    <plugins>
-      <!-- 编码和编译和JDK版本 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <encoding>utf8</encoding>
-        </configuration>
-      </plugin>
-    </plugins>
   </build>
 </project>

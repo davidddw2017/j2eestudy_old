@@ -4,12 +4,12 @@
   xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  <artifactId>springmvcDemo</artifactId>
   <parent>
     <groupId>org.cloud</groupId>
     <artifactId>j2eestudy</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
-  <artifactId>springmvcDemo</artifactId>
   <packaging>war</packaging>
   <name>springmvcDemo Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -19,26 +19,8 @@
       <artifactId>spring-webmvc</artifactId>
       <version>5.1.7.RELEASE</version>
     </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   <build>
     <finalName>springmvcDemo</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <encoding>utf8</encoding>
-        </configuration>
-      </plugin>
-    </plugins>
   </build>
 </project>

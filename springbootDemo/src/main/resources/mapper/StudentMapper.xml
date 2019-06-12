@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.cloud.ssm.mapper.StudentMapper">
+
+  <resultMap type="Student" id="studentMap">
+    <id column="id" property="id"></id>
+    <result column="name" property="name" />
+    <result column="address" property="address" />
+    <result column="age" property="age" />
+  </resultMap>
+
+  <select id="listStudent" resultMap="studentMap">
+    SELECT *
+    FROM `t_student`
+  </select>
+
+  <delete id="deleteStudent" parameterType="long">
+    DELETE FROM
+    `t_student` WHERE `t_student`.id=#{id}
+  </delete>
+
+  <insert id="addStudent" useGeneratedKeys="true" keyProperty="id" parameterType="Student">
+    INSERT INTO `t_student` (id,name,address,age)
+    VALUES (NULL,#{name},#{address},#{age})
+  </insert>
+
+</mapper>
