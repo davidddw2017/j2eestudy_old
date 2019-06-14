@@ -3,7 +3,7 @@
 
 <mapper namespace="org.cloud.ssm.mapper.StudentMapper">
 
-  <resultMap type="Student" id="studentMap">
+  <resultMap type="org.cloud.ssm.model.Student" id="studentMap">
     <id column="id" property="id"></id>
     <result column="name" property="name" />
     <result column="address" property="address" />
@@ -20,7 +20,7 @@
     `t_student` WHERE `t_student`.id=#{id}
   </delete>
 
-  <insert id="addStudent" useGeneratedKeys="true" keyProperty="id" parameterType="Student">
+  <insert id="addStudent" useGeneratedKeys="true" keyProperty="id" parameterType="org.cloud.ssm.model.Student">
     INSERT INTO `t_student` (id,name,address,age)
     VALUES (NULL,#{name},#{address},#{age})
   </insert>
