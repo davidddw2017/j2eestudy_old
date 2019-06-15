@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.cloud.ormDemo.model.User;
+import org.cloud.ormDemo.model.Employee;
 
 public class JDBCDemo {
 
@@ -14,7 +14,7 @@ public class JDBCDemo {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://192.168.1.33:3306/mydb";
+            String url = "jdbc:mysql://db.cloud.org:3306/mydb";
             String user = "cloud";
             String password = "passwd";
             connection = (Connection) DriverManager.getConnection(url, user, password);
@@ -25,11 +25,11 @@ public class JDBCDemo {
         return connection;
     }
 
-    public User getUser(long id) {
+    public Employee getEmployee(long id) {
         Connection connection = getConnection();
         PreparedStatement pStatement = null;
         ResultSet rSet = null;
-        String sql = "select * from t_person where id = ?";
+        String sql = "select * from t_employee where id = ?";
         try {
             pStatement = connection.prepareStatement(sql);
             pStatement.setLong(1, id);
@@ -39,7 +39,7 @@ public class JDBCDemo {
                 String name = rSet.getString("name");
                 String address = rSet.getString("address");
                 int age = rSet.getInt("age");
-                return new User(g_id, name, address, age);
+                return new Employee(g_id, name, address, age);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,9 +49,9 @@ public class JDBCDemo {
 
     public static void main(String[] args) {
         JDBCDemo jdbcDemo = new JDBCDemo();
-        User user = jdbcDemo.getUser(1L);
-        if(user != null) {
-            System.out.println("User info: " + user);
+        Employee employee = jdbcDemo.getEmployee(1L);
+        if(employee != null) {
+            System.out.println("User info: " + employee);
         }
     }
 

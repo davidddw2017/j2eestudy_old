@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.cloud.ormDemo.model">
   <!-- 操作条件： 1：对象与表 2：属性与字段的对应 3：类型的对应,类型默认采用属性的类型，type不写的话 -->
-  <class name="User" table="t_person">
+  <class name="Employee" table="t_employee">
     <!-- 主键，映射 -->
     <id name="id" column="id">
       <generator class="native"></generator>
@@ -17,8 +17,8 @@
     <property name="age" column="age"></property>
   </class>
   
-  <sql-query name="getUserByName">
-    <![CDATA[select {p.*} from t_person p where id=:id]]>
-    <return alias="p" class="User"></return>
+  <sql-query name="getEmployeeByName">
+    <![CDATA[select {p.*} from t_employee p where id=:id]]>
+    <return alias="p" class="Employee"></return>
   </sql-query>
 </hibernate-mapping>

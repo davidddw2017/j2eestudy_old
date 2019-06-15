@@ -1,23 +1,16 @@
-package org.cloud.ormDemo.model;
+package org.cloud.springmvcDemo.model;
 
-public class User {
-    private long id;
+public class Employee {
+    private Long id;
     private String name;
     private String address;
-    private int age;
+    private Integer age;
 
-    public User() {
+    public Employee() {
         super();
     }
-    
-    public User(String name, String address, int age) {
-        super();
-        this.name = name;
-        this.address = address;
-        this.age = age;
-    }
 
-    public User(int id, String name, String address, int age) {
+    public Employee(long id, String name, String address, int age) {
         super();
         this.id = id;
         this.name = name;
@@ -25,11 +18,11 @@ public class User {
         this.age = age;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,16 +42,17 @@ public class User {
         this.address = address;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
     @Override
     public String toString() {
-        return "User [name=" + name + ", address=" + address + ", age=" + age + "]";
+        return "Employee [id=" + id + ", name=" + name + ", address=" + address + ", age=" + age + "]";
     }
+
 }

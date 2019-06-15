@@ -6,7 +6,7 @@
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://192.168.1.33:3306/mydb</property>
+    <property name="hibernate.connection.url">jdbc:mysql://db.cloud.org:3306/mydb?useSSL=false</property>
     <property name="connection.useUnicode">true</property>
     <property name="connection.characterEncoding">UTF-8</property>
     <property name="hibernate.connection.username">cloud</property>
@@ -33,7 +33,7 @@
     <!-- 基于annotation的配置 
     <mapping class="org.cloud.entity.Person"/> -->
     <!-- 基于hbm.xml配置文件 -->
-    <mapping resource="hibernate/user.hbm.xml" />
+    <mapping resource="hibernate/employee.hbm.xml" />
 
   </session-factory>
 </hibernate-configuration>

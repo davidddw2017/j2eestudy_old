@@ -13,8 +13,8 @@ public class IndexController {
         return "index";
     }
     
-    @RequestMapping("/restStudent")
-    public String restStudent() {
-    	return "student";
+    @RequestMapping("/restEmployee")
+    public String restEmployee() {
+    	return "employee";
     }
 }

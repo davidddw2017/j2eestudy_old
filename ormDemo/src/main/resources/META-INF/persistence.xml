@@ -6,12 +6,12 @@
                       http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="psunit1">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>org.cloud.ormDemo.jpa.Person</class>
+    <class>org.cloud.ormDemo.jpa.Employee</class>
     <properties>
       <!--数据库的方言,告诉JPA当前应用使用的数据库 -->
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
       <!--jpa的相关的配置信息 -->
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.33:3306/mydb" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db.cloud.org:3306/mydb?useSSL=false" />
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
       <property name="javax.persistence.jdbc.user" value="cloud" />
       <property name="javax.persistence.jdbc.password" value="passwd" />

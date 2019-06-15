@@ -6,25 +6,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "t_person")
-public class Person {
+@Table(name = "t_employee")
+public class Employee {
     private long id;
     private String name;
     private String address;
     private int age;
 
-    public Person() {
+    public Employee() {
         super();
     }
 
-    public Person(String name, String address, int age) {
+    public Employee(String name, String address, int age) {
         super();
         this.name = name;
         this.address = address;
         this.age = age;
     }
 
-    public Person(long id, String name, String address, int age) {
+    public Employee(long id, String name, String address, int age) {
         super();
         this.id = id;
         this.name = name;
@@ -68,6 +68,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person [name=" + name + ", address=" + address + ", age=" + age + "]";
+        return "Employee [name=" + name + ", address=" + address + ", age=" + age + "]";
     }
 }

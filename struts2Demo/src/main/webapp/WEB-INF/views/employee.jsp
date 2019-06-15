@@ -18,7 +18,7 @@ table.info td, table.info th { padding:5px 10px;}
 <body>
 	<h1>Struts 2 Json example</h1>
 
-	<h2>Add Student</h2>
+	<h2>Add employee</h2>
 	<s:form id="form" action="">
 		<s:textfield id="name" name="name" label="Name" value="" />
 		<s:textfield id="address" name="address" label="Address" value="" />
@@ -26,7 +26,7 @@ table.info td, table.info th { padding:5px 10px;}
 		<s:submit id="submit"/>
 	</s:form>
 
-	<h2>All Student</h2>
+	<h2>All employee</h2>
 	<div id="output"></div>
 
 	<br />
@@ -50,12 +50,12 @@ table.info td, table.info th { padding:5px 10px;}
             var $btn = $("#submit");
             $btn.bind("click", function() {
             	var formData = new FormData($("#form")[0]); 
-            	ajaxFormRequest("POST", "rest/student/addStudent", formData, function(data) {
+            	ajaxFormRequest("POST", "rest/employee/addEmployee", formData, function(data) {
                     var obj = JSON.parse(data);
                     $("#name").val('');
                     $("#address").val('');
                     $("#age").val('');
-                    ajaxJsonRequest("GET", "rest/student/listStudent", null, function(data) {
+                    ajaxJsonRequest("GET", "rest/employee/listEmployee", null, function(data) {
                         fillTable(JSON.parse(data));
                     });
                 });
@@ -64,7 +64,7 @@ table.info td, table.info th { padding:5px 10px;}
         };
         $(document).ready(function() {
         	add();
-            ajaxJsonRequest("GET", "rest/student/listStudent", null, function(data) {
+            ajaxJsonRequest("GET", "rest/employee/listEmployee", null, function(data) {
             	fillTable(JSON.parse(data));
             });
            
@@ -74,8 +74,8 @@ table.info td, table.info th { padding:5px 10px;}
         	if(item) {
         		var formData = new FormData();
         		formData.append("id", item);
-        		ajaxFormRequest("POST", "rest/student/deleteStudent", formData, function() {
-        			ajaxJsonRequest("GET", "rest/student/listStudent", null, function(data) {
+        		ajaxFormRequest("POST", "rest/employee/deleteEmployee", formData, function() {
+        			ajaxJsonRequest("GET", "rest/employee/listEmployee", null, function(data) {
                     	fillTable(JSON.parse(data));
                     });
         		});

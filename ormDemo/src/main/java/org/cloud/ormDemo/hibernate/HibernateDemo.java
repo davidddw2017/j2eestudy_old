@@ -2,7 +2,7 @@ package org.cloud.ormDemo.hibernate;
 
 import java.util.Optional;
 
-import org.cloud.ormDemo.model.User;
+import org.cloud.ormDemo.model.Employee;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
@@ -24,34 +24,34 @@ public class HibernateDemo {
 
     public static void savePerson(Session session) {
         Transaction tx = session.beginTransaction();
-        User user = new User("ddw", "beijing", 20);
+        Employee user = new Employee("ddw", "beijing", 20);
         session.save(user);
         tx.commit();
     }
 
     public static String getNamedQuery(Session session) {
-        Query<User> query = session.createNamedQuery("getUserByName", User.class);
+        Query<Employee> query = session.createNamedQuery("getEmployeeByName", Employee.class);
         query.setParameter("id", 1L);
-        User user = query.uniqueResult();
+        Employee user = query.uniqueResult();
         return Optional.ofNullable(user).map(u -> u.getName()).orElse("no body");
     }
 
     public static String normalQuery(Session session) {
-        User user = session.get(User.class, 1L);
-        return Optional.ofNullable(user).map(u -> u.getName()).orElse("no body");
+        Employee employee = session.get(Employee.class, 1L);
+        return Optional.ofNullable(employee).map(u -> u.getName()).orElse("no body");
     }
 
     public static String normalHQLQuery1(Session session) {
         session = HibernateUtil.getSessionFactory().openSession();
-        String hql = "from User where id = :id";
-        User user = session.createQuery(hql, User.class).setParameter("id", 1L).uniqueResult();
-        return Optional.ofNullable(user).map(u -> u.getName()).orElse("no body");
+        String hql = "from Employee where id = :id";
+        Employee employee = session.createQuery(hql, Employee.class).setParameter("id", 1L).uniqueResult();
+        return Optional.ofNullable(employee).map(u -> u.getName()).orElse("no body");
     }
 
     public static String normalHQLQuery2(Session session) {
-        String sql = "SELECT * FROM t_person where id = :id";
-        NativeQuery<User> query = session.createNativeQuery(sql, User.class);
-        User user = query.setParameter("id", 1L).uniqueResult();
+        String sql = "SELECT * FROM t_employee where id = :id";
+        NativeQuery<Employee> query = session.createNativeQuery(sql, Employee.class);
+        Employee user = query.setParameter("id", 1L).uniqueResult();
         return Optional.ofNullable(user).map(u -> u.getName()).orElse("no body");
     }
 }

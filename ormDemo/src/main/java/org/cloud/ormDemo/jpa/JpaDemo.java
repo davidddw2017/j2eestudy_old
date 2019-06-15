@@ -11,9 +11,9 @@ public class JpaDemo {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager entityManager = emf.createEntityManager();
-        Person person = entityManager.getReference(Person.class, 1L);
-        if (person != null) {
-            System.out.println("Person info: " + person);
+        Employee employee = entityManager.getReference(Employee.class, 1L);
+        if (employee != null) {
+            System.out.println("Employee info: " + employee);
         }
         entityManager.close();
         emf.close();

@@ -19,29 +19,29 @@
     <action name="loginPage">
       <result>/WEB-INF/views/login/loginPage.jsp</result>
     </action>
-    <action name="restStudent">
-      <result>/WEB-INF/views/student.jsp</result>
+    <action name="restEmployee">
+      <result>/WEB-INF/views/employee.jsp</result>
     </action>
   </package>
   
-  <package name="student" namespace="/student" extends="struts-default">
-    <action name="*" class="org.cloud.struts2Demo.action.StudentAction" method="{1}">
-      <result name="list" >/WEB-INF/views/student/studentList.jsp</result>
+  <package name="employee" namespace="/employee" extends="struts-default">
+    <action name="*" class="org.cloud.struts2Demo.action.EmployeeAction" method="{1}">
+      <result name="list" >/WEB-INF/views/employee/employeeList.jsp</result>
       <result name="save" type="redirect">list</result>
       <result name="delete" type="redirect">list</result>
-      <result name="update">/WEB-INF/views/student/update.jsp</result>
-      <result name="add">/WEB-INF/views/student/add.jsp</result>
+      <result name="update">/WEB-INF/views/employee/update.jsp</result>
+      <result name="add">/WEB-INF/views/employee/add.jsp</result>
       <allowed-methods>list,save,preSave,delete</allowed-methods>
     </action>
   </package>
   
   <!-- class属性的值对应beans.xml中注入的Action的id名 -->
-  <package name="student_json" namespace="/rest/student" extends="json-default">
-    <action name="*" class="org.cloud.struts2Demo.action.StudentRestAction" method="{1}">
+  <package name="employee_json" namespace="/rest/employee" extends="json-default">
+    <action name="*" class="org.cloud.struts2Demo.action.EmployeeRestAction" method="{1}">
       <result name="success" type="json">
         <param name="root">result</param>
       </result>
-      <allowed-methods>listStudent,deleteStudent,addStudent</allowed-methods>
+      <allowed-methods>listEmployee,deleteEmployee,addEmployee</allowed-methods>
     </action>
   </package>
   

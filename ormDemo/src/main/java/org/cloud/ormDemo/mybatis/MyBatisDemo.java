@@ -3,7 +3,7 @@ package org.cloud.ormDemo.mybatis;
 import java.util.Optional;
 
 import org.apache.ibatis.session.SqlSession;
-import org.cloud.ormDemo.model.User;
+import org.cloud.ormDemo.model.Employee;
 
 public class MyBatisDemo {
 
@@ -14,9 +14,9 @@ public class MyBatisDemo {
     }
 
     private static String getUserById(SqlSession session) {
-        UserMapper userMapper = session.getMapper(UserMapper.class);
-        User user = userMapper.getUserByName(1L);
-        return Optional.ofNullable(user).map(u -> u.getName()).orElse("no body");
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        Employee employee = employeeMapper.getEmployeeByName(1L);
+        return Optional.ofNullable(employee).map(u -> u.getName()).orElse("no body");
     }
 
 }

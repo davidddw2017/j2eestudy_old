@@ -1,16 +1,16 @@
 package org.cloud.struts2Demo.model;
 
-public class Student {
+public class Employee {
     private Long id;
     private String name;
     private String address;
     private int age;
 
-    public Student() {
+    public Employee() {
         super();
     }
 
-    public Student(long id, String name, String address, int age) {
+    public Employee(long id, String name, String address, int age) {
         super();
         this.id = id;
         this.name = name;
@@ -52,7 +52,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student [id=" + id + ", name=" + name + ", address=" + address + ", age=" + age + "]";
+        return "Employee [id=" + id + ", name=" + name + ", address=" + address + ", age=" + age + "]";
     }
 
 }
