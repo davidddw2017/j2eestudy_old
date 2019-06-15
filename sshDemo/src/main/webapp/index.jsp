@@ -7,6 +7,6 @@
 </head>
 <body>
 Struts2 Web Application!<br/>
-<a href="restStudent">OP Student by JSON</a><br/>
+<a href="restEmployee">OP Employee by JSON</a><br/>
 </body>
 </html>

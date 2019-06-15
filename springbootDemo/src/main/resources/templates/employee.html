@@ -26,7 +26,7 @@ button {
     <div class="row">
       <h2 class="center-align">SpringBoot Json example</h2>
 
-      <h2 class="center-align">Add Student</h2>
+      <h2 class="center-align">Add Employee</h2>
       <form id="form" action="" class="col s12 m6">
         <table>
           <tr>
@@ -49,7 +49,7 @@ button {
       </form>
     </div>
     <div class="row">
-      <h2>All Student</h2>
+      <h2>All Employee</h2>
       <div id="output"></div>
     </div>
     <br />
@@ -74,12 +74,12 @@ button {
         var $btn = $("#submit");
         $btn.bind("click", function() {
           var formData = new FormData($("#form")[0]);
-          ajaxFormRequest("POST", "rest/student/addStudent", formData, function(data) {
+          ajaxFormRequest("POST", "rest/Employee/addEmployee", formData, function(data) {
             var obj = data;
             $("#name").val('');
             $("#address").val('');
             $("#age").val('');
-            ajaxJsonRequest("GET", "rest/student/listStudent", null, function(data) {
+            ajaxJsonRequest("GET", "rest/Employee/listEmployee", null, function(data) {
               fillTable(data);
             });
           });
@@ -88,7 +88,7 @@ button {
       };
       $(document).ready(function() {
         add();
-        ajaxJsonRequest("GET", "rest/student/listStudent", null, function(data) {
+        ajaxJsonRequest("GET", "rest/Employee/listEmployee", null, function(data) {
           fillTable(data);
         });
 
@@ -98,8 +98,8 @@ button {
         if (item) {
           var formData = new FormData();
           formData.append("id", item);
-          ajaxFormRequest("POST", "rest/student/deleteStudent", formData, function() {
-            ajaxJsonRequest("GET", "rest/student/listStudent", null, function(data) {
+          ajaxFormRequest("POST", "rest/Employee/deleteEmployee", formData, function() {
+            ajaxJsonRequest("GET", "rest/Employee/listEmployee", null, function(data) {
               fillTable(data);
             });
           });

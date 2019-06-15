@@ -2,13 +2,13 @@ package org.cloud.ssh.dao.impl;
 
 import java.util.List;
 
-import org.cloud.ssh.dao.StudentDAO;
-import org.cloud.ssh.entity.Student;
+import org.cloud.ssh.dao.EmployeeDAO;
+import org.cloud.ssh.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class StudentDAOImpl implements StudentDAO {
+public class EmployeeDAOImpl implements EmployeeDAO {
 
     private SessionFactory sessionFactory;
 
@@ -17,34 +17,32 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public void addStudent(Student student) {
+    public void addEmployee(Employee employee) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(student);
+        session.save(employee);
         tx.commit();
         session.close();
-
     }
 
     @Override
-    public List<Student> listStudent() {
+    public List<Employee> listEmployee() {
         Session session = sessionFactory.openSession();
-        String hql = "from Student s order by s.id";
-        List<Student> res = session.createQuery(hql, Student.class).list();
+        String hql = "from Employee s order by s.id";
+        List<Employee> res = session.createQuery(hql, Employee.class).list();
         session.close();
         return res;
     }
 
     @Override
-    public void deleteStudent(int studentID) {
+    public void deleteEmployee(int employeeID) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         // 获取对象
-        Student u = (Student) session.get(Student.class, studentID);
+        Employee u = (Employee) session.get(Employee.class, employeeID);
         session.delete(u);
         tx.commit();
         session.close();
-
     }
 
 }

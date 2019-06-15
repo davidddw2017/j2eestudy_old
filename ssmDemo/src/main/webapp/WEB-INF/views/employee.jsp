@@ -2,7 +2,7 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="command" class="org.cloud.ssm.entity.Student" scope="request"></jsp:useBean>
+<jsp:useBean id="command" class="org.cloud.ssm.entity.Employee" scope="request"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,7 @@ button {
     <div class="row">
       <h2 class="center-align">Spring MVC Json example</h2>
 
-      <h2 class="center-align">Add Student</h2>
+      <h2 class="center-align">Add Employee</h2>
       <form:form id="form" action="" class="col s12 m6">
         <table>
           <tr>
@@ -54,7 +54,7 @@ button {
       </form:form>
     </div>
     <div class="row">
-      <h2>All Student</h2>
+      <h2>All Employee</h2>
       <div id="output"></div>
     </div>
     <br />
@@ -79,12 +79,12 @@ button {
         var $btn = $("#submit");
         $btn.bind("click", function() {
           var formData = new FormData($("#form")[0]);
-          ajaxFormRequest("POST", "rest/student/addStudent", formData, function(data) {
+          ajaxFormRequest("POST", "rest/employee/addEmployee", formData, function(data) {
             var obj = data;
             $("#name").val('');
             $("#address").val('');
             $("#age").val('');
-            ajaxJsonRequest("GET", "rest/student/listStudent", null, function(data) {
+            ajaxJsonRequest("GET", "rest/employee/listEmployee", null, function(data) {
               fillTable(data);
             });
           });
@@ -93,7 +93,7 @@ button {
       };
       $(document).ready(function() {
         add();
-        ajaxJsonRequest("GET", "rest/student/listStudent", null, function(data) {
+        ajaxJsonRequest("GET", "rest/employee/listEmployee", null, function(data) {
           fillTable(data);
         });
 
@@ -103,8 +103,8 @@ button {
         if (item) {
           var formData = new FormData();
           formData.append("id", item);
-          ajaxFormRequest("POST", "rest/student/deleteStudent", formData, function() {
-            ajaxJsonRequest("GET", "rest/student/listStudent", null, function(data) {
+          ajaxFormRequest("POST", "rest/employee/deleteEmployee", formData, function() {
+            ajaxJsonRequest("GET", "rest/employee/listEmployee", null, function(data) {
               fillTable(data);
             });
           });

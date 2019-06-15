@@ -4,15 +4,15 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans 
       http://www.springframework.org/schema/beans/spring-beans.xsd">
   
-  <!-- 注入Student -->
-  <bean id="studentDAO" class="org.cloud.ssh.dao.impl.StudentDAOImpl">
+  <!-- 注入Employee -->
+  <bean id="employeeDAO" class="org.cloud.ssh.dao.impl.EmployeeDAOImpl">
     <property name="sessionFactory" ref="sessionFactory" />
   </bean>
-  <bean id="studentService" class="org.cloud.ssh.service.impl.StudentServiceImpl">
-    <property name="studentDAO" ref="studentDAO" />
+  <bean id="employeeService" class="org.cloud.ssh.service.impl.EmployeeServiceImpl">
+    <property name="employeeDAO" ref="employeeDAO" />
   </bean>
-  <bean id="studentAction" class="org.cloud.ssh.action.StudentAction">
-    <property name="studentService" ref="studentService" />
+  <bean id="employeeAction" class="org.cloud.ssh.action.EmployeeAction">
+    <property name="employeeService" ref="employeeService" />
   </bean>
 
 </beans>

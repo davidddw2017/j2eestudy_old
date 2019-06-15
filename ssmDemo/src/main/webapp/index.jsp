@@ -7,6 +7,6 @@
 </head>
 <body>
 SpringMVC Application!<br/>
-<a href="restStudent">OP Student by JSON</a><br/>
+<a href="restEmployee">OP Student by JSON</a><br/>
 </body>
 </html>

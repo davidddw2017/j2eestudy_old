@@ -4,7 +4,7 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.cloud.ssh.entity">
 
-  <class name="Student" table="t_student">
+  <class name="Employee" table="t_employee">
     <id name="id" type="java.lang.Integer">
       <generator class="identity" />
     </id>

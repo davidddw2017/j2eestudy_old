@@ -46,7 +46,7 @@
 
     <property name="annotatedClasses">
       <list>
-        <value>org.cloud.ssh.entity.Student</value>
+        <value>org.cloud.ssh.entity.Employee</value>
       </list>
     </property>
     <!-- 使用通配符配置整个同一路径下的.hbm.xml 

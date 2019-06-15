@@ -9,7 +9,7 @@
   </settings>-->
 
   <typeAliases>
-    <typeAlias type="org.cloud.ssm.entity.Student" alias="Student" />
+    <typeAlias type="org.cloud.ssm.entity.Employee" alias="Employee" />
   </typeAliases>
   
 </configuration>

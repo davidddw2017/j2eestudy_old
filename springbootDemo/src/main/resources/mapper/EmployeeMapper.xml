@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="org.cloud.ssm.mapper.StudentMapper">
+<mapper namespace="org.cloud.ssm.mapper.EmployeeMapper">
 
-  <resultMap type="org.cloud.ssm.model.Student" id="studentMap">
+  <resultMap type="org.cloud.ssm.model.Employee" id="employeeMap">
     <id column="id" property="id"></id>
     <result column="name" property="name" />
     <result column="address" property="address" />
     <result column="age" property="age" />
   </resultMap>
 
-  <select id="listStudent" resultMap="studentMap">
+  <select id="listEmployee" resultMap="employeeMap">
     SELECT *
-    FROM `t_student`
+    FROM `t_employee`
   </select>
 
-  <delete id="deleteStudent" parameterType="long">
+  <delete id="deleteEmployee" parameterType="long">
     DELETE FROM
-    `t_student` WHERE `t_student`.id=#{id}
+    `t_employee` WHERE `t_employee`.id=#{id}
   </delete>
 
-  <insert id="addStudent" useGeneratedKeys="true" keyProperty="id" parameterType="org.cloud.ssm.model.Student">
-    INSERT INTO `t_student` (id,name,address,age)
+  <insert id="addEmployee" useGeneratedKeys="true" keyProperty="id" parameterType="org.cloud.ssm.model.Employee">
+    INSERT INTO `t_employee` (id,name,address,age)
     VALUES (NULL,#{name},#{address},#{age})
   </insert>
 

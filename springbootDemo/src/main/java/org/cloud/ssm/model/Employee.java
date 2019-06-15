@@ -1,20 +1,16 @@
-package org.cloud.ssm.entity;
+package org.cloud.ssm.model;
 
-import java.io.Serializable;
-
-public class Student implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Employee {
     private Long id;
     private String name;
     private String address;
     private Integer age;
 
-    public Student() {
+    public Employee() {
         super();
     }
 
-    public Student(Long id, String name, String address, Integer age) {
+    public Employee(long id, String name, String address, int age) {
         super();
         this.id = id;
         this.name = name;
@@ -52,6 +48,11 @@ public class Student implements Serializable {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [id=" + id + ", name=" + name + ", address=" + address + ", age=" + age + "]";
     }
 
 }

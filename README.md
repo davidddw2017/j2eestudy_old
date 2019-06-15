@@ -32,11 +32,18 @@
 
 	create database mydb default character set utf8 collate utf8_bin;
 	grant all on mydb.* to 'cloud'@'%' identified by 'passwd' with grant option;
+	or
+	CREATE USER 'cloud'@'%' IDENTIFIED BY 'passwd';
+	grant all on mydb.* to 'cloud'@'%' with grant option;
 	flush privileges;
 	use mydb
-	create table t_student 
+	create table t_employee 
 	(id int primary key auto_increment, 
 	name varchar(50) not null, 
 	address varchar(100) not null,
 	age int not null);
+	insert into t_employee values(1, '张三', '吉林', 23);
+	insert into t_employee values(2, '李四', '北京', 30);
+	insert into t_employee values(3, '王五', '上海', 25);
+	
 

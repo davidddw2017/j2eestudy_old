@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_student")
-public class Student implements Serializable {
+@Table(name="t_employee")
+public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int id;
@@ -18,11 +18,11 @@ public class Student implements Serializable {
     private String address;
     private int age;
 
-    public Student() {
+    public Employee() {
         super();
     }
 
-    public Student(int id, String name, String address, int age) {
+    public Employee(int id, String name, String address, int age) {
         super();
         this.id = id;
         this.name = name;
