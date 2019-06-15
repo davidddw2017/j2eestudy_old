@@ -8,22 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/x-icon" href="static/favicon.ico">
-<link href="static/materializecss/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-<script src="static/jquery/jquery.min.js"></script>
+<script src="static/js/jquery-3.3.1.min.js"></script>
 <script src="static/js/custom.js"></script>
 <style>
-button {
-	background: none;
-	border: none;
-}
-
-.btn-del {
-	float: right;
-	margin-right: 10px;
-	color: #000;
-	font-weight: normal;
-}
-
+button{background:none; border:none;}
+.btn-del{ float:right; margin-right:10px; color:#000; font-weight:normal;}
+table.info { border-collapse:collapse;}
+table.info tr, table.info td, table.info th { border:1px solid #999;}
+table.info td, table.info th { padding:5px 10px;}
 </style>
 </head>
 <body>
@@ -61,7 +53,7 @@ button {
   </div>
   <script>
       function fillTable(obj) {
-        var html = '<table>';
+        var html = '<table class="info">';
         html += '<tr><th>User Id</th><th>Name</th><th>Address</th><th>Age</th><th>Operate</th></tr>';
         var $btnDel = '<span><button type="button" class="btn-del">删除</button></span>';
         for ( var key in obj) {

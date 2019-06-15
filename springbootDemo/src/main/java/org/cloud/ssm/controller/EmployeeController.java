@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/rest/Employee")
+@RequestMapping("/rest/employee")
 public class EmployeeController {
 	
 	private static final String SUCCESS = "success";
