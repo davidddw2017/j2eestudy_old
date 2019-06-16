@@ -9,5 +9,9 @@ public interface EmployeeMapper {
 
     List<Employee> listEmployee();
     
+    Employee getEmployee(long employeeID);
+    
+    void updateEmployee(Employee employee);
+    
     void deleteEmployee(long employeeID);
 }

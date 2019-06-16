@@ -28,4 +28,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteEmployee(long employeeID) {
         employeeMapper.deleteEmployee(employeeID);
     }
+
+    @Override
+    public Employee getEmployee(long employeeID) {
+        return employeeMapper.getEmployee(employeeID);
+    }
+
+    @Override
+    public void updateEmployee(Employee employee) {
+        employeeMapper.updateEmployee(employee);
+    }
 }

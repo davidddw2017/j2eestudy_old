@@ -6,8 +6,12 @@ import org.cloud.ssm.model.Employee;
 import org.cloud.ssm.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -19,21 +23,32 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService service;
 
-	@RequestMapping("/listEmployee")
+	@GetMapping("/listEmployee")
 	public @ResponseBody List<Employee> listEmployee() {
 		List<Employee> listEmployee = service.listEmployee();
 		return listEmployee;
 	}
 
-	@RequestMapping(value = "/addEmployee", method=RequestMethod.POST)
+	@PostMapping(value = "/addEmployee")
 	public @ResponseBody String addEmployee(Employee employee) {
 		service.addEmployee(employee);
 		return SUCCESS;
 	}
+	
+	@GetMapping("/getEmployee/{employeeId}")
+    public @ResponseBody Employee getEmployee(@PathVariable Long employeeId) {
+	    return service.getEmployee(employeeId);
+    }
+	
+	@PutMapping("/updateEmployee")
+    public @ResponseBody String updateEmployee(Employee employee) {
+        service.updateEmployee(employee);
+        return SUCCESS;
+    }
 
-	@RequestMapping(value= "/deleteEmployee", method=RequestMethod.POST)
-	public @ResponseBody String deleteEmployee(Employee employee) {
-		service.deleteEmployee(employee.getId());
+	@DeleteMapping(value= "/deleteEmployee/{employeeId}")
+	public @ResponseBody String deleteEmployee(@PathVariable Long employeeId) {
+		service.deleteEmployee(employeeId);
 		return SUCCESS;
 	}
 

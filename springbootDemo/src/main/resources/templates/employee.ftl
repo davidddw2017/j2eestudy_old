@@ -18,20 +18,12 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="webjars/AdminLTE/2.4.10/dist/css/skins/skin-blue.min.css">
-
-	<style>
-	button {
-		background: none;
-		border: none;
-	}
-	
-	.btn-del {
-		float: right;
-		margin-right: 10px;
-		color: #000;
-		font-weight: normal;
-	}
-	</style>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -93,11 +85,7 @@
     	<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 		    <!-- Content Header (Page header) -->
-       		<section class="content-header">
-            	<h1>
-                	SpringBoot Json example
-            	</h1>
-        	</section>
+       		<section class="content-header"><h1>Spring Boot + WebJars + AdminLTE 2.x</h1></section>
         	
         	<!-- Main content -->
 	        <section class="content container-fluid">
@@ -105,42 +93,40 @@
 	        	    <div class="col-md-12">
 		        		<div class="box box-primary">
 		                	<div class="box-header with-border">
-		                    	<h3 class="box-title">Spring Boot + WebJars + AdminLTE 2.x</h3>
+		                    	<h3 class="box-title">录入雇员信息</h3>
 		                    </div>
 		                	<!-- /.box-header -->
 				            <form id="form" action="" class="form-horizontal">
 								<div class="box-body">
 				                	<div class="form-group">
-	                  					<label for="name" class="col-sm-2 control-label">Name: </label>
+	                  					<label for="name" class="col-sm-2 control-label">姓名: </label>
 							            <div class="col-sm-10">
-	                    					<input type="text" class="form-control" name="name" id="name" placeholder="Name">
+	                    					<input type="text" class="form-control" name="name" id="name" placeholder="Name" />
 	                  					</div>
 	                				</div>
 	                				<div class="form-group">
-	                  						<label for="address" class="col-sm-2 control-label">Address: </label>
-							                <div class="col-sm-10">
-	                    						<input type="text" class="form-control" name="address" id="address" placeholder="Address">
-	                  						</div>
+	                  					<label for="address" class="col-sm-2 control-label">地址: </label>
+							            <div class="col-sm-10">
+	                    					<input type="text" class="form-control" name="address" id="address" placeholder="Address" />
+	                  					</div>
 	                				</div>
 	                				<div class="form-group">
-	                  						<label for="age" class="col-sm-2 control-label">Age: </label>
-							                <div class="col-sm-10">
-	                    						<input type="text" class="form-control" name="age" id="age" placeholder="Age">
-	                  						</div>
+	                  					<label for="age" class="col-sm-2 control-label">年龄: </label>
+							            <div class="col-sm-10">
+	                    					<input type="text" class="form-control" name="age" id="age" placeholder="Age" />
+	                  					</div>
 	                				</div>
 								</div>
 								<!-- /.box-body -->
 								<div class="box-footer">
-									<button type="submit" id="submit" class="btn btn-primary">Submit</button>
+									<button type="submit" id="submit" class="btn btn-primary pull-right">添加</button>
 		              			</div>
 	              				<!-- /.box-footer-->
 							</form>
 		            	</div>
 		            	<!-- /.box -->
 		            	<div class="box box-danger">
-				           	<div class="box-header">
-				              	<h3 class="box-title">All Employee</h3>
-				            </div>
+				           	<div class="box-header"><h3 class="box-title">所有雇员信息</h3></div>
 				            <!-- /.box-header -->
 				            <div class="box-body" id="output"></div>
 				            <!-- /.box-body -->
@@ -155,12 +141,48 @@
     	<!-- Main Footer -->
 	    <footer class="main-footer">
 	        <!-- To the right -->
-	        <div class="pull-right hidden-xs">
-	            Anything you want
-	        </div>
 	        <!-- Default to the left -->
 	        <strong>Copyright &copy; 2019 <a href="#">Company</a>.</strong> All rights reserved.
 	    </footer>
+	    <div class="modal" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="updateModalLabel">修改信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="updateForm" action="" class="form-horizontal">
+                        	<div class="box-body">
+                        		<input type="hidden" name="id" id="c_id" />
+				                <div class="form-group">
+	                  				<label for="name" class="col-sm-2 control-label">姓名: </label>
+							        <div class="col-sm-10">
+	                    				<input type="text" class="form-control" name="name" id="c_name" placeholder="Name" />
+	                  				</div>
+	                			</div>
+	                			<div class="form-group">
+	                  				<label for="address" class="col-sm-2 control-label">地址: </label>
+							        <div class="col-sm-10">
+	                    				<input type="text" class="form-control" name="address" id="c_address" placeholder="Address">
+	                  				</div>
+	                			</div>
+	                			<div class="form-group">
+	                  				<label for="age" class="col-sm-2 control-label">年龄: </label>
+							        <div class="col-sm-10">
+	                    				<input type="text" class="form-control" name="age" id="c_age" placeholder="Age">
+	                  				</div>
+	                			</div>
+							</div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="updateInfo">
+                            提交更改
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
 	</div>
 	<!-- jQuery 3 -->
 	<script src="webjars/jquery/3.4.1/jquery.min.js"></script>

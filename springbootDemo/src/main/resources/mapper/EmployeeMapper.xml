@@ -14,6 +14,11 @@
     SELECT *
     FROM `t_employee`
   </select>
+  
+  <select id="getEmployee" parameterType="long" resultMap="employeeMap">
+    SELECT *
+    FROM `t_employee` WHERE `t_employee`.id=#{id}
+  </select>
 
   <delete id="deleteEmployee" parameterType="long">
     DELETE FROM
@@ -24,5 +29,15 @@
     INSERT INTO `t_employee` (id,name,address,age)
     VALUES (NULL,#{name},#{address},#{age})
   </insert>
+  
+  <update id="updateEmployee" parameterType="org.cloud.ssm.model.Employee">
+    UPDATE `t_employee`
+    <set>
+        name=#{name},
+        address=#{address},
+        age=#{age}
+    </set>
+    WHERE id=#{id}
+  </update>
 
 </mapper>
