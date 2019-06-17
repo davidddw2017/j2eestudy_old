@@ -28,7 +28,7 @@
 	end;
 	/
 
-#mysql
+# MySQL
 
 	create database mydb default character set utf8 collate utf8_bin;
 	grant all on mydb.* to 'cloud'@'%' identified by 'passwd' with grant option;
