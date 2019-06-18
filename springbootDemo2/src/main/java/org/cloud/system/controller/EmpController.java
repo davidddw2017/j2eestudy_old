@@ -2,6 +2,7 @@ package org.cloud.system.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.cloud.common.util.ResultBean;
 import org.cloud.system.model.Emp;
@@ -46,6 +47,7 @@ public class EmpController {
     @PostMapping
     @ResponseBody
     public ResultBean addEmp(Emp emp) {
+        emp.setUserId(UUID.randomUUID().toString());
         return ResultBean.success(service.save(emp));
     }
     

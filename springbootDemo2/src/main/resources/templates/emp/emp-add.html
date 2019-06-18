@@ -27,7 +27,7 @@
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div th:if="${emp != null}" class="layui-form-item">
                 <label for="userId" class="layui-form-label">
                     用户ID
                 </label>
@@ -111,11 +111,12 @@
           	formSelects: 'formSelects-v4'
       	}).use(['form', 'layer', 'formSelects'], function () {
           	$ = layui.jquery;
+          	var index = parent.layer.getFrameIndex(window.name); 
+          	
           	var form = layui.form
             	, layer = layui.layer
               	, formSelects = layui.formSelects;
-    
-    
+
 			form.on('submit(add)', function (form) {
 				form.field.role = formSelects.value('role-select', 'val');
               	$.post('/api/emp', form.field, function (result) {
@@ -136,10 +137,12 @@
     
           	function addDone(data) {
               	layer.msg("添加成功", {icon: 6});
+              	parent.layer.close(index); 
           	}
     
           	function editDone(data) {
               	layer.msg("修改成功", {icon: 6});
+              	parent.layer.close(index); 
           	}
       	});
     </script>
