@@ -1,9 +1,9 @@
-package org.cloud.ssm.controller;
+package org.cloud.system.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.cloud.ssm.info.Server;
+import org.cloud.common.info.Server;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;

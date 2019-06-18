@@ -1,4 +1,4 @@
-package org.cloud.ssm.model;
+package org.cloud.system.model;
 
 public class Employee {
     private Long id;

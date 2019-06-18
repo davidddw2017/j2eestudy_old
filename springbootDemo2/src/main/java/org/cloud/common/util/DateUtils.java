@@ -1,4 +1,4 @@
-package org.cloud.ssm.util;
+package org.cloud.common.util;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 

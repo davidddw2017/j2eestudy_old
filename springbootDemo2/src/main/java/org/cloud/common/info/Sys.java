@@ -1,4 +1,4 @@
-package org.cloud.ssm.info;
+package org.cloud.common.info;
 
 public class Sys {
     /**

@@ -1,10 +1,10 @@
-package org.cloud.ssm.service;
+package org.cloud.system.mapper;
 
 import java.util.List;
 
-import org.cloud.ssm.model.Employee;
+import org.cloud.system.model.Employee;
 
-public interface EmployeeService {
+public interface EmployeeMapper {
     void addEmployee(Employee employee);
 
     List<Employee> listEmployee();
@@ -12,6 +12,6 @@ public interface EmployeeService {
     Employee getEmployee(long employeeID);
     
     void updateEmployee(Employee employee);
-
+    
     void deleteEmployee(long employeeID);
 }

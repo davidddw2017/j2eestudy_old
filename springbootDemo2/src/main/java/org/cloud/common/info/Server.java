@@ -1,11 +1,11 @@
-package org.cloud.ssm.info;
+package org.cloud.common.info;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
-import org.cloud.ssm.util.Arith;
-import org.cloud.ssm.util.IPUtils;
+import org.cloud.common.util.Arith;
+import org.cloud.common.util.IPUtils;
 
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="org.cloud.ssm.mapper.EmployeeMapper">
+<mapper namespace="org.cloud.system.mapper.EmployeeMapper">
 
-  <resultMap type="org.cloud.ssm.model.Employee" id="employeeMap">
+  <resultMap type="Employee" id="employeeMap">
     <id column="id" property="id"></id>
     <result column="name" property="name" />
     <result column="address" property="address" />
@@ -25,12 +25,12 @@
     `t_employee` WHERE `t_employee`.id=#{id}
   </delete>
 
-  <insert id="addEmployee" useGeneratedKeys="true" keyProperty="id" parameterType="org.cloud.ssm.model.Employee">
+  <insert id="addEmployee" useGeneratedKeys="true" keyProperty="id" parameterType="Employee">
     INSERT INTO `t_employee` (id,name,address,age)
     VALUES (NULL,#{name},#{address},#{age})
   </insert>
   
-  <update id="updateEmployee" parameterType="org.cloud.ssm.model.Employee">
+  <update id="updateEmployee" parameterType="Employee">
     UPDATE `t_employee`
     <set>
         name=#{name},

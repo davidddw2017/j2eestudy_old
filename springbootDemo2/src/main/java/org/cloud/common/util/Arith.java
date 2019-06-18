@@ -1,4 +1,4 @@
-package org.cloud.ssm.util;
+package org.cloud.common.util;
 
 import java.math.BigDecimal;
 

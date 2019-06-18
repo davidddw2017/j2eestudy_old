@@ -1,4 +1,4 @@
-package org.cloud.ssm.config;
+package org.cloud.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

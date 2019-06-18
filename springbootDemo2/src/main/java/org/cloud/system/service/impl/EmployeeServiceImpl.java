@@ -1,10 +1,10 @@
-package org.cloud.ssm.service.impl;
+package org.cloud.system.service.impl;
 
 import java.util.List;
 
-import org.cloud.ssm.mapper.EmployeeMapper;
-import org.cloud.ssm.model.Employee;
-import org.cloud.ssm.service.EmployeeService;
+import org.cloud.system.mapper.EmployeeMapper;
+import org.cloud.system.model.Employee;
+import org.cloud.system.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

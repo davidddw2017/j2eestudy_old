@@ -1,9 +1,9 @@
-package org.cloud.ssm.controller;
+package org.cloud.system.controller;
 
 import java.util.List;
 
-import org.cloud.ssm.model.Employee;
-import org.cloud.ssm.service.EmployeeService;
+import org.cloud.system.model.Employee;
+import org.cloud.system.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
