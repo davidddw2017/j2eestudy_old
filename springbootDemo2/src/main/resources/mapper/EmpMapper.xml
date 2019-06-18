@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.cloud.system.mapper.EmpMapper">
+
+  <resultMap type="Emp" id="empMap">
+    <id column="id" property="id"></id>
+    <result column="userid" property="userId" />
+    <result column="username" property="username" />
+    <result column="password" property="password" />
+    <result column="department" property="department" />
+    <result column="tel" property="tel" />
+    <result column="email" property="email" />
+    <result column="status" property="status" />
+  </resultMap>
+
+  <select id="selectAll" resultMap="empMap">
+    SELECT *
+    FROM `t_emp`
+  </select>
+  
+  <select id="selectCount" resultType="long">
+    SELECT count(*)
+    FROM `t_emp`
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="long" resultMap="empMap">
+    SELECT *
+    FROM `t_emp`
+    WHERE `t_emp`.id=#{id}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="long">
+    DELETE FROM
+    `t_emp` 
+    WHERE `t_emp`.id=#{id}
+  </delete>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Emp">
+    INSERT INTO `t_emp` (id,userid,username,password,department,tel,email,status)
+    VALUES (NULL,#{userId},#{username},#{password},#{department},#{tel},#{email},#{status})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="Emp">
+    UPDATE `t_emp`
+    <set>
+        userid=#{userId},
+        username=#{username},
+        <if test="password != null">
+            password = #{password,jdbcType=VARCHAR},
+        </if>
+        department=#{department},
+        tel=#{tel},
+        email=#{email},
+        status=#{status}
+    </set>
+    WHERE id=#{id}
+  </update>
+  
+  <update id="updateStatusByPrimaryKey">
+    UPDATE `t_emp`
+    <set>
+      status=#{status}
+    </set>
+    WHERE id=#{id}
+  </update>
+
+</mapper>

@@ -4,5 +4,6 @@
 <configuration>
   <typeAliases>
     <typeAlias type="org.cloud.system.model.Employee" alias="Employee" />
+    <typeAlias type="org.cloud.system.model.Emp" alias="Emp" />
   </typeAliases>
 </configuration>

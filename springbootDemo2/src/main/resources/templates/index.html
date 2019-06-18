@@ -10,6 +10,7 @@
     <link rel="stylesheet" th:href="@{/webjars/layui/2.4.5/css/layui.css}">
     <link rel="stylesheet" th:href="@{/static/css/zadmin.css}">
     <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <link rel="stylesheet" th:href="@{/static/css/font.css}">
 </head>
 <body class="layui-layout-body">
     <div class="layui-layout layui-layout-admin">
@@ -18,7 +19,7 @@
             <!-- logo 区域 -->
             <div class="layui-logo">
                 <img th:src="@{/static/images/security.png}" alt="logo"/>
-                <cite>&nbsp;Shiro Action&emsp;</cite>
+                <cite>&nbsp;pestle&emsp;</cite>
             </div>
 
             <!-- 头部区域 -->
@@ -37,13 +38,8 @@
             <!-- 头像区域 -->
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
-                    <a lay-event="clear" title="清理标签缓存"><img th:src="@{/static/images/clear.png}" alt="" style="height: 18px;"/></a>
-                </li>
-
-                <li class="layui-nav-item">
                     <a>
                         <img th:src="@{/static/images/avatar.png}" class="layui-nav-img" alt="头像">
-                        <cite><shiro:principal property="username"/></cite>
                         <span class="layui-nav-more"></span>
                     </a>
                     <dl class="layui-nav-child layui-anim layui-anim-upbit">

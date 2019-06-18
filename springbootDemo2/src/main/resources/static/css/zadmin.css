@@ -7,7 +7,7 @@
     box-shadow: 0 1px 0 0 rgba(0,0,0,.05);
 }
 
-.layui-layout-admin .layui-header .layui-nav .layui-this:after, 
+.layui-layout-admin .layui-header .layui-nav .layui-this:after,
 .layui-layout-admin .layui-header .layui-nav-bar {
     height: 2px;
     background-color: #03152a;
@@ -68,6 +68,10 @@
     padding: 0 10px;
 }
 /* ----- 头部样式 ----- */
+
+
+
+
 
 /* ----- tab 样式 ----- */
 
@@ -196,7 +200,19 @@
     right: 0
 }
 /* ----- tab 左右按钮样式 ----- */
+
+
+
+
+
+
+
+
+
+
+
 /* ----- 导航样式 ----- */
+
 
 /* 导航背景颜色 */
 .layui-layout-admin .layui-side {
@@ -219,7 +235,8 @@
     background-color: transparent;
 }
 
-.layui-layout-admin .layui-side .layui-nav .layui-nav-item .layui-icon {
+.layui-layout-admin .layui-side .layui-nav .layui-nav-item .layui-icon,
+.layui-layout-admin .layui-side .layui-nav .layui-nav-item .iconfont{
     position: absolute;
     top: 50%;
     left: 20px;
@@ -271,6 +288,7 @@
 .layui-layout-admin .layui-side .layui-nav .layui-nav-item.layui-this>a:hover{
     color: rgb(64, 158, 255)
 }
+
 
 /* 去除悬浮时左侧的绿条 */
 .layui-nav-tree .layui-nav-bar {
@@ -384,6 +402,8 @@
 }
 
 /* ----- 导航收起样式 ----- */
+
+
 
 /* ----- 导航小屏幕样式 -----*/
 
@@ -513,10 +533,13 @@
     .layui-layout-admin .layui-nav .layui-breadcrumb a:not(:last-child) {
         display: none;
     }
+
 }
 
 
+
 /* ----- 导航小屏幕样式 ----- */
+
 
 /* ----- 底部样式 ----- */
 
