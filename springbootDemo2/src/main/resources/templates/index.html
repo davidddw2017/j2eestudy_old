@@ -64,7 +64,8 @@
                 <ul class="layui-nav layui-nav-tree" lay-filter="lay-nav" lay-accordion="true">
                     <li class="layui-nav-item layui-this">
                         <a lay-url="welcome" lay-id="home">
-                            <i class="layui-icon layui-icon-home"></i>&emsp;<cite>首页</cite>
+                            <i class="layui-icon layui-icon-home"></i>&emsp;
+                            <cite>首页</cite>
                         </a>
                     </li>
 
@@ -115,6 +116,18 @@
     <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/layui/2.4.5/layui.js}"></script>
     <script th:src="@{/static/js/common.js}"></script>
-    <script th:src="@{/static/js/custom.js}"></script>
+    
+    <script>
+
+        function logout() {
+            sessionStorage.removeItem("tabs");
+            sessionStorage.removeItem("currentTabId");
+            $.post('logout', function(result) {
+    			if (result.code==0) {
+    				window.location.href = 'login';
+    			}
+    		}, 'json');
+        }
+    </script>
 </body>
 </html>

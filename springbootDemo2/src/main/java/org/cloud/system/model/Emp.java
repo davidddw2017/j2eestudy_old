@@ -108,4 +108,9 @@ public class Emp implements Serializable {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "Emp [id=" + id + ", userId=" + userId + ", username=" + username + ", password=" + password
+                + ", department=" + department + ", tel=" + tel + ", email=" + email + ", status=" + status + "]";
+    }
 }

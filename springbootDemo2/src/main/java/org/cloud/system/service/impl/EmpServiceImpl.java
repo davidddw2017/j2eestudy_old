@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.cloud.common.base.BaseServiceImpl;
 import org.cloud.system.mapper.EmpMapper;
 import org.cloud.system.model.Emp;
-import org.cloud.system.service.EmpService;
+import org.cloud.system.service.IEmpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 
 @Service
-public class EmpServiceImpl extends BaseServiceImpl<EmpMapper, Emp> implements EmpService {
+public class EmpServiceImpl extends BaseServiceImpl<EmpMapper, Emp> implements IEmpService {
 
     private final Logger logger = LoggerFactory.getLogger(EmpServiceImpl.class);
 

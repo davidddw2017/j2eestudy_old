@@ -5,7 +5,7 @@ import java.util.List;
 import org.cloud.common.base.BaseService;
 import org.cloud.system.model.Emp;
 
-public interface EmpService extends BaseService<Emp> {
+public interface IEmpService extends BaseService<Emp> {
 
     List<Emp> getAllByPage(int pageNum, int pageSize);
 

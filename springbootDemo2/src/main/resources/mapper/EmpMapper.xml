@@ -44,7 +44,9 @@
   <update id="updateByPrimaryKey" parameterType="Emp">
     UPDATE `t_emp`
     <set>
-        userid=#{userId},
+        <if test="userId != null">
+            userid=#{userId},
+        </if>
         username=#{username},
         <if test="password != null">
             password = #{password,jdbcType=VARCHAR},

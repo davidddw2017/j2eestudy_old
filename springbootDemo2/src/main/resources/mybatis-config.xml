@@ -3,7 +3,11 @@
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
-    <typeAlias type="org.cloud.system.model.Employee" alias="Employee" />
     <typeAlias type="org.cloud.system.model.Emp" alias="Emp" />
+    <typeAlias type="org.cloud.system.model.Dept" alias="Dept" />
+    <typeAlias type="org.cloud.system.model.Menu" alias="Menu" />
+    <typeAlias type="org.cloud.system.model.Permission" alias="Permission" />
+    <typeAlias type="org.cloud.system.model.Role" alias="Role" />
+    <typeAlias type="org.cloud.system.model.User" alias="User" />
   </typeAliases>
 </configuration>

@@ -14,6 +14,10 @@ public class Menu implements Serializable {
     private String url;
 
     private String icon;
+    
+    private int level;
+    
+    private Integer parentId;
 
     private List<Menu> children;
 
@@ -23,6 +27,22 @@ public class Menu implements Serializable {
 
     public void setMenuId(Integer menuId) {
         this.menuId = menuId;
+    }
+    
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public String getMenuName() {
@@ -63,6 +83,16 @@ public class Menu implements Serializable {
         this.menuName = menuName;
         this.url = url;
         this.icon = icon;
+        this.children = children;
+    }
+    
+    public Menu(Integer menuId, String menuName, String url, String icon, Integer parentId, List<Menu> children) {
+        super();
+        this.menuId = menuId;
+        this.menuName = menuName;
+        this.url = url;
+        this.icon = icon;
+        this.parentId = parentId;
         this.children = children;
     }
 
