@@ -11,7 +11,7 @@
  Target Server Version : 50560
  File Encoding         : 65001
 
- Date: 19/06/2019 13:39:11
+ Date: 19/06/2019 17:57:12
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `hibernate_sequence`;
 CREATE TABLE `hibernate_sequence`  (
-  `next_val` bigint(20) NULL DEFAULT NULL
+  `next_val` bigint(20) DEFAULT NULL
 ) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Fixed;
 
 -- ----------------------------
@@ -31,15 +31,111 @@ CREATE TABLE `hibernate_sequence`  (
 INSERT INTO `hibernate_sequence` VALUES (6);
 
 -- ----------------------------
+-- Table structure for sys_permissions
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_permissions`;
+CREATE TABLE `sys_permissions`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `permission` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sys_permissions
+-- ----------------------------
+INSERT INTO `sys_permissions` VALUES (1, 'user:create', '用户模块新增');
+INSERT INTO `sys_permissions` VALUES (2, 'user:update', '用户模块修改');
+INSERT INTO `sys_permissions` VALUES (3, 'user:select', '用户模块查询');
+INSERT INTO `sys_permissions` VALUES (4, 'user:delete', '用户模块删除');
+
+-- ----------------------------
+-- Table structure for sys_roles
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_roles`;
+CREATE TABLE `sys_roles`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `role` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sys_roles
+-- ----------------------------
+INSERT INTO `sys_roles` VALUES (1, 'admin', '管理员');
+INSERT INTO `sys_roles` VALUES (2, 'user', '用户管理员');
+
+-- ----------------------------
+-- Table structure for sys_roles_permissions
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_roles_permissions`;
+CREATE TABLE `sys_roles_permissions`  (
+  `role_id` bigint(20) NOT NULL,
+  `permission_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`role_id`, `permission_id`) USING BTREE,
+  INDEX `sys_roles_permissions_ibfk_2`(`permission_id`) USING BTREE,
+  CONSTRAINT `sys_roles_permissions_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `sys_roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `sys_roles_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `sys_permissions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sys_roles_permissions
+-- ----------------------------
+INSERT INTO `sys_roles_permissions` VALUES (1, 1);
+INSERT INTO `sys_roles_permissions` VALUES (1, 2);
+INSERT INTO `sys_roles_permissions` VALUES (1, 3);
+INSERT INTO `sys_roles_permissions` VALUES (1, 4);
+INSERT INTO `sys_roles_permissions` VALUES (2, 3);
+
+-- ----------------------------
+-- Table structure for sys_users
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_users`;
+CREATE TABLE `sys_users`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `locked` tinyint(255) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sys_users
+-- ----------------------------
+INSERT INTO `sys_users` VALUES (1, 'admin', '$shiro1$SHA-256$50000$JO3AIB1c5YxUsInNrfAugQ==$pfI6Q+fjzx8/iToXEhnpXgLH3VErwu01NtN+cKfg1yQ=', 0);
+INSERT INTO `sys_users` VALUES (2, 'ddw', '$shiro1$SHA-256$50000$Orz1I7i8b3dAgDAyG9GUXg==$Znb9QvJH3f7KLJBYU3DWxFtq1jxVxvH0LVQ3NfUx+WI=', 0);
+
+-- ----------------------------
+-- Table structure for sys_users_roles
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_users_roles`;
+CREATE TABLE `sys_users_roles`  (
+  `user_id` bigint(20) NOT NULL,
+  `role_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`user_id`, `role_id`) USING BTREE,
+  INDEX `sys_users_roles_ibfk_2`(`role_id`) USING BTREE,
+  CONSTRAINT `sys_users_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `sys_users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `sys_users_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `sys_roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sys_users_roles
+-- ----------------------------
+INSERT INTO `sys_users_roles` VALUES (1, 1);
+INSERT INTO `sys_users_roles` VALUES (1, 2);
+INSERT INTO `sys_users_roles` VALUES (2, 2);
+
+-- ----------------------------
 -- Table structure for t_dept
 -- ----------------------------
 DROP TABLE IF EXISTS `t_dept`;
 CREATE TABLE `t_dept`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `description` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `description` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of t_dept
@@ -60,8 +156,8 @@ CREATE TABLE `t_emp`  (
   `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `department` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `tel` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `email` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tel` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `email` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 112 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -77,10 +173,7 @@ INSERT INTO `t_emp` VALUES (5, '8a3af82a-32dd-417c-b3a7-cb9240dea666', '关胜',
 INSERT INTO `t_emp` VALUES (6, 'f3f85267-698e-4322-a98c-4846f43c865a', '林冲', 'password', '框架研发', '18604317895', 'test1@128.com', 1);
 INSERT INTO `t_emp` VALUES (7, '52cd0c64-66c9-451d-9032-4515938372c1', '秦明', 'password', '启明星', '18604317896', 'test0@129.com', 1);
 INSERT INTO `t_emp` VALUES (8, '82425c18-562e-468c-9a1a-c63701db9e45', '呼延灼', 'password', '框架研发', '18604317897', 'test1@129.com', 1);
-INSERT INTO `t_emp` VALUES (9, '65445059-a254-425b-a4f8-7406250e7fa1', '花荣', 'password',  'BU产品', '18604317898', 'test0@130.com',0);
-INSERT INTO `t_emp` VALUES (10, '6f1e1963-c8b8-4119-a7a0-7ff2c2db6b25', '柴进', 'password', 'BU产品', '18604317899', 'test1@130.com',0);
 INSERT INTO `t_emp` VALUES (11, '8ff2a745-0104-4ebf-b3a7-1362487d1ac0', '李应', 'password', 'BU研发', '18604317900', 'test0@131.com', 1);
-INSERT INTO `t_emp` VALUES (12, 'b38e3bf6-4bcd-4140-b0e3-a282dac693b0', '朱仝', 'password', '公共产品', '18604317901', 'test1@131.com',0);
 INSERT INTO `t_emp` VALUES (13, 'dc5d943e-2be8-408f-bbce-e227c24ba2c9', '鲁智深', 'password', '启明星', '18604317902', 'test0@132.com', 1);
 INSERT INTO `t_emp` VALUES (14, 'a0608c70-4d47-4da3-ab80-1a7560d7d2ad', '武松', 'password', '项目管理', '18604317903', 'test1@132.com', 1);
 INSERT INTO `t_emp` VALUES (15, 'c4203cbd-3b9f-4314-8c21-5f7aa5ed4017', '董平', 'password', '项目管理', '18604317904', 'test0@133.com', 1);
@@ -177,6 +270,8 @@ INSERT INTO `t_emp` VALUES (105, '7b1eac86-b09c-4c23-81e7-1fb5d4bb02c2', '郁保
 INSERT INTO `t_emp` VALUES (106, '5bcbbcdd-1545-403f-abf7-1e924846fba3', '白胜', 'password', 'BU产品', '18604317995', 'test1@178.com', 0);
 INSERT INTO `t_emp` VALUES (107, '2f25dd46-5249-4c96-82e9-fc59a774b92b', '时迁', 'password', 'BU研发', '18604317996', 'test0@179.com', 1);
 INSERT INTO `t_emp` VALUES (108, '0a4fcfc7-2247-4a26-b88e-ffd1c16254ca', '段景柱', 'password', '公共产品', '18604317997', 'test1@179.com', 0);
+INSERT INTO `t_emp` VALUES (110, 'c47461f5-b570-4391-b38a-03bdf81c9fad', '阿阿斯顿', '123333', 'BU研发', '2323', 'asdf@sdaf.com', 1);
+INSERT INTO `t_emp` VALUES (111, 'a81e22a8-b4da-4ce1-9217-b58372c45cf3', 'asdf', '123123', 'BU研发', '12323', '123@cxvzx.com', 1);
 
 -- ----------------------------
 -- Table structure for t_employee
