@@ -20,6 +20,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+
 @Configuration
 public class ShiroConfig {
 
@@ -137,5 +139,9 @@ public class ShiroConfig {
         ehCacheCacheManager.setCacheManager(cacheManagerFactoryBean.getObject());
         return ehCacheCacheManager;
     }
-
+    
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
+    }
 }

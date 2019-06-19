@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
@@ -14,7 +15,7 @@
 <body>
     <div class="z-body animated fadeIn">
         <blockquote class="layui-elem-quote">欢迎：
-            <span></span>！当前时间: [[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm:ss')}]]</blockquote>
+            <span><shiro:principal property="username"/></span>！当前时间: [[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm:ss')}]]</blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
             <div class="layui-field-box">
