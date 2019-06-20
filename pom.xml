@@ -15,6 +15,7 @@
     <module>ssmDemo</module>
     <module>springbootDemo</module>
     <module>springbootDemo2</module>
+    <module>servletDemo</module>
   </modules>
   <dependencies>
     <dependency>
