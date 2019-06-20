@@ -10,7 +10,8 @@ public class Emp implements Serializable {
     private String userId;
     private String username;
     private String password;
-    private Dept department;
+    private Long deptId;
+    private String deptName;
     private String tel;
     private String email;
     private Integer status;
@@ -19,26 +20,24 @@ public class Emp implements Serializable {
         super();
     }
     
-    public Emp(Long id, String username, String password, Dept department, String tel, String email, Integer status) {
+    public Emp(Long id, String username, String password, String tel, String email, Integer status) {
         super();
         this.id = id;
         this.userId = UUID.randomUUID().toString();
         this.username = username;
         this.password = password;
-        this.department = department;
         this.tel = tel;
         this.email = email;
         this.status = status;
     }
     
-    public Emp(Long id, String userId, String username, String password, Dept department, String tel, String email,
+    public Emp(Long id, String userId, String username, String password, String tel, String email,
             Integer status) {
         super();
         this.id = id;
         this.userId = userId;
         this.username = username;
         this.password = password;
-        this.department = department;
         this.tel = tel;
         this.email = email;
         this.status = status;
@@ -50,6 +49,22 @@ public class Emp implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(Long deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     public String getUserId() {
@@ -74,14 +89,6 @@ public class Emp implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Dept getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Dept department) {
-        this.department = department;
     }
 
     public String getTel() {
@@ -111,6 +118,6 @@ public class Emp implements Serializable {
     @Override
     public String toString() {
         return "Emp [id=" + id + ", userId=" + userId + ", username=" + username + ", password=" + password
-                + ", department=" + department + ", tel=" + tel + ", email=" + email + ", status=" + status + "]";
+                + ", tel=" + tel + ", email=" + email + ", status=" + status + "]";
     }
 }

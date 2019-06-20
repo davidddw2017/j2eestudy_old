@@ -1,0 +1,11 @@
+[Unit]
+Description=Pestle
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/java -Xmx512m -Xms256m -Xmn128m -jar /spare/springbootDemo2-1.0.0.jar
+Type=simple
+User=root
+
+[Install]
+WantedBy=multi-user.target

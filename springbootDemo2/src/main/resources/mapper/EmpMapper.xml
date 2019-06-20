@@ -11,11 +11,8 @@
     <result property="tel" column="tel" />
     <result property="email" column="email" />
     <result property="status" column="status" />
-    <association property="department" column="department" javaType="Dept">
-      <id property="id" column="dept_id" ></id>
-      <result property="title" column="title"  />
-      <result property="description" column="description"  />
-    </association>
+    <result property="deptId" column="deptid" />
+    <result property="deptName" column="deptname" />
   </resultMap>
   
   <sql id="selectColumns">
@@ -27,9 +24,8 @@
     A.tel,
     A.email,
     A.status, 
-    B.id AS dept_id,
-    B.title,
-    B.description
+    B.id AS deptid,
+    B.title AS deptname
   </sql>
 
   <select id="selectAll" resultMap="empMap">
@@ -61,7 +57,7 @@
 
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Emp">
     INSERT INTO `t_emp` (id,userid,username,password,department,tel,email,status)
-    VALUES (NULL,#{userId},#{username},#{password},#{department.id},#{tel},#{email},#{status})
+    VALUES (NULL,#{userId},#{username},#{password},#{deptId},#{tel},#{email},#{status})
   </insert>
   
   <update id="updateByPrimaryKey" parameterType="Emp">
@@ -74,7 +70,7 @@
         <if test="password != null">
             password = #{password,jdbcType=VARCHAR},
         </if>
-        department=#{department.id},
+        department=#{deptId},
         tel=#{tel},
         email=#{email},
         status=#{status}

@@ -56,10 +56,10 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">部门</label>
                 <div class="layui-input-block">
-                    <select th:filed="${emp?.department.title}" th:value="${emp?.department.title}" name="department" lay-verify="tips" >
+                    <select th:filed="${emp?.deptName}" th:value="${emp?.deptName}" name="deptId" lay-verify="tips" >
                         <option value="">请选择</option>
                         <option th:each="dept:${deptList}" th:value="${dept.id}" th:text="${dept.title}" 
-                        		th:selected="${dept.id eq emp?.department.id}" ></option>
+                        		th:selected="${dept.id eq emp?.deptId}" ></option>
                     </select>
                 </div>
             </div>
