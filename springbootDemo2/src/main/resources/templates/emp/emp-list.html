@@ -55,7 +55,7 @@
                         {type: 'numbers', title: '序号', width: "5%"}
                         , {field: 'id', title: 'ID', width: "10%", hide: true}
                         , {field: 'username', title: '用户名', width: "15%"}
-                        , {field: 'department', title: '部门', width: "15%"}
+                        , {field: 'department', title: '部门', templet: function(d){ return d.department.title; }, width: "15%"}
                         , {field: 'email', title: '邮箱', width: "15%"}
                         , {field: 'tel', title: '手机', width: "15%"}
                         , {field: 'status', title: '状态', templet: "#statusTpl", width: "15%"}

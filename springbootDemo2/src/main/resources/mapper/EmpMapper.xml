@@ -4,19 +4,40 @@
 <mapper namespace="org.cloud.system.mapper.EmpMapper">
 
   <resultMap type="Emp" id="empMap">
-    <id column="id" property="id"></id>
-    <result column="userid" property="userId" />
-    <result column="username" property="username" />
-    <result column="password" property="password" />
-    <result column="department" property="department" />
-    <result column="tel" property="tel" />
-    <result column="email" property="email" />
-    <result column="status" property="status" />
+    <id property="id" column="id" ></id>
+    <result property="userId" column="userid" />
+    <result property="username" column="username" />
+    <result property="password" column="password" />
+    <result property="tel" column="tel" />
+    <result property="email" column="email" />
+    <result property="status" column="status" />
+    <association property="department" column="department" javaType="Dept">
+      <id property="id" column="dept_id" ></id>
+      <result property="title" column="title"  />
+      <result property="description" column="description"  />
+    </association>
   </resultMap>
+  
+  <sql id="selectColumns">
+    A.id,
+    A.userid,
+    A.username,
+    A.password,
+    A.department,
+    A.tel,
+    A.email,
+    A.status, 
+    B.id AS dept_id,
+    B.title,
+    B.description
+  </sql>
 
   <select id="selectAll" resultMap="empMap">
-    SELECT *
-    FROM `t_emp`
+    SELECT
+    <include refid="selectColumns"/>
+    FROM `t_emp` A
+    LEFT OUTER JOIN `t_dept` B ON A.department=B.id
+    ORDER BY A.id
   </select>
   
   <select id="selectCount" resultType="long">
@@ -25,9 +46,11 @@
   </select>
   
   <select id="selectByPrimaryKey" parameterType="long" resultMap="empMap">
-    SELECT *
-    FROM `t_emp`
-    WHERE `t_emp`.id=#{id}
+    SELECT
+    <include refid="selectColumns"/>
+    FROM `t_emp` A
+    LEFT OUTER JOIN `t_dept` B ON A.department=B.id
+    WHERE A.id=#{id}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="long">
@@ -38,7 +61,7 @@
 
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Emp">
     INSERT INTO `t_emp` (id,userid,username,password,department,tel,email,status)
-    VALUES (NULL,#{userId},#{username},#{password},#{department},#{tel},#{email},#{status})
+    VALUES (NULL,#{userId},#{username},#{password},#{department.id},#{tel},#{email},#{status})
   </insert>
   
   <update id="updateByPrimaryKey" parameterType="Emp">
@@ -51,7 +74,7 @@
         <if test="password != null">
             password = #{password,jdbcType=VARCHAR},
         </if>
-        department=#{department},
+        department=#{department.id},
         tel=#{tel},
         email=#{email},
         status=#{status}

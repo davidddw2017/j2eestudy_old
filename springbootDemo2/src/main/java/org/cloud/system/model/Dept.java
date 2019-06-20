@@ -1,6 +1,7 @@
 package org.cloud.system.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Dept implements Serializable {
 
@@ -8,6 +9,16 @@ public class Dept implements Serializable {
     private Long id;
     private String title;
     private String description;
+    
+    private List<Emp> emps;
+    
+    public List<Emp> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<Emp> emps) {
+        this.emps = emps;
+    }
 
     public Long getId() {
         return id;
@@ -46,7 +57,7 @@ public class Dept implements Serializable {
 
     @Override
     public String toString() {
-        return "Dept [id=" + id + ", title=" + title + ", description=" + description + "]";
+        return title;
     }
 
 }

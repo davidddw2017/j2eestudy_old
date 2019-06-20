@@ -7,8 +7,7 @@
     <id column="id" property="id" />
     <result column="role" property="role" />
     <result column="description" property="description" />
-    <collection property="rolePermissions" column="role_id"
-      ofType="RolePermission">
+    <collection property="rolePermissions" column="role_id" ofType="RolePermission">
       <association column="permission_id" property="permission" javaType="Permission">
         <id column="id" property="id"></id>
         <result column="permission" property="permission" />

@@ -10,7 +10,7 @@ public class Emp implements Serializable {
     private String userId;
     private String username;
     private String password;
-    private Integer department;
+    private Dept department;
     private String tel;
     private String email;
     private Integer status;
@@ -19,7 +19,7 @@ public class Emp implements Serializable {
         super();
     }
     
-    public Emp(Long id, String username, String password, int department, String tel, String email, Integer status) {
+    public Emp(Long id, String username, String password, Dept department, String tel, String email, Integer status) {
         super();
         this.id = id;
         this.userId = UUID.randomUUID().toString();
@@ -31,7 +31,7 @@ public class Emp implements Serializable {
         this.status = status;
     }
     
-    public Emp(Long id, String userId, String username, String password, int department, String tel, String email,
+    public Emp(Long id, String userId, String username, String password, Dept department, String tel, String email,
             Integer status) {
         super();
         this.id = id;
@@ -76,11 +76,11 @@ public class Emp implements Serializable {
         this.password = password;
     }
 
-    public Integer getDepartment() {
+    public Dept getDepartment() {
         return department;
     }
 
-    public void setDepartment(Integer department) {
+    public void setDepartment(Dept department) {
         this.department = department;
     }
 
