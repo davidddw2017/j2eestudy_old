@@ -23,7 +23,9 @@
     </div>
 
     <script type="text/html" id="column-toolbar">
-        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="kickout">下线</a>
+        {{#  if(d.id !== '[[${#session.id}]]') { }}
+        	<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="kickout">下线</a>
+        {{#  } }}
     </script>
 
     <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
@@ -39,7 +41,7 @@
                 elem: '#user-table'
                 , url: '/api/user/list'
                 , page: true
-                ,limits:[10,20,50]
+                , limits:[10,20,50]
                 , cols: [
                     [
                       {type: 'numbers', title: '序号', width: "5%"}
