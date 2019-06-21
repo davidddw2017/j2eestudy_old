@@ -61,4 +61,10 @@ public interface IUserService extends BaseService<User> {
 
     public void forceLogout(String sessionId);
 
+    public boolean disableUserByID(Long id);
+
+    public boolean enableUserByID(Long id);
+
+    public void updatePasswordByUserId(Long id, String password);
+
 }

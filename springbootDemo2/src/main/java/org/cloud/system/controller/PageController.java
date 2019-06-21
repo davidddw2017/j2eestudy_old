@@ -21,7 +21,7 @@ public class PageController {
 
     @Autowired
     private IEmpService empService;
-    
+
     @Autowired
     private IDeptService deptService;
 
@@ -73,7 +73,7 @@ public class PageController {
         model.addAttribute("deptList", deptService.getAll());
         return "emp/emp-add";
     }
-    
+
     @GetMapping("/empChangeView")
     public String empAddPage(ModelMap model) throws Exception {
         model.addAttribute("deptList", deptService.getAll());
@@ -90,7 +90,7 @@ public class PageController {
         model.addAttribute("dept", deptService.getById(id).orElse(new Dept()));
         return "dept/dept-add";
     }
-    
+
     @GetMapping("/deptChangeView")
     public String deptAddPage(ModelMap model) throws Exception {
         return "dept/dept-add";
@@ -100,9 +100,20 @@ public class PageController {
     public String userOnline(ModelMap model) throws Exception {
         return "user/online-list";
     }
-    
+
     @GetMapping("/syslog")
     public String syslog(ModelMap model) throws Exception {
         return "log/syslog-list";
+    }
+
+    @GetMapping("/userView")
+    public String userView(ModelMap model) throws Exception {
+        return "user/user-list";
+    }
+
+    @GetMapping("/user/{id}/reset")
+    public String resetPassword(@PathVariable("id") Integer id, ModelMap model) {
+        model.addAttribute("id", id);
+        return "user/user-reset";
     }
 }

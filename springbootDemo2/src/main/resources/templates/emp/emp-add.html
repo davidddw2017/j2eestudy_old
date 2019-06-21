@@ -59,7 +59,7 @@
                     <select th:filed="${emp?.deptName}" th:value="${emp?.deptName}" name="deptId" lay-verify="tips" >
                         <option value="">请选择</option>
                         <option th:each="dept:${deptList}" th:value="${dept.id}" th:text="${dept.title}" 
-                        		th:selected="${dept.id eq emp?.deptId}" ></option>
+                                th:selected="${dept.id eq emp?.deptId}" ></option>
                     </select>
                 </div>
             </div>
@@ -79,50 +79,50 @@
 
     <script>
         layui.config({
-        	base: '/static/js/'
-      	}).extend({
-          	formSelects: 'formSelects-v4'
-      	}).use(['form', 'layer', 'formSelects'], function () {
-          	$ = layui.jquery;
-          	var index = parent.layer.getFrameIndex(window.name);
-          	
-          	var form = layui.form
-            	, layer = layui.layer
-              	, formSelects = layui.formSelects;
+            base: '/static/js/'
+          }).extend({
+              formSelects: 'formSelects-v4'
+          }).use(['form', 'layer', 'formSelects'], function () {
+              $ = layui.jquery;
+              var index = parent.layer.getFrameIndex(window.name);
+              
+              var form = layui.form
+                , layer = layui.layer
+                  , formSelects = layui.formSelects;
 
-			form.on('submit(add)', function (form) {
-				form.field.role = formSelects.value('role-select', 'val');
-				ajaxJsonRequest("POST", '/api/emp/', JSON.stringify(form.field), function (result) {
-                	handlerResult(result, addDone)
-            	});
-              	return false;
-          	});
+            form.on('submit(add)', function (form) {
+                form.field.role = formSelects.value('role-select', 'val');
+                ajaxJsonRequest("POST", '/api/emp/', JSON.stringify(form.field), function (result) {
+                    handlerResult(result, addDone)
+                });
+                  return false;
+              });
     
-          	//监听提交
-          	form.on('submit(edit)', function (form) {
-              	form.field._method = 'PUT';
-              	form.field.role = formSelects.value('role-select', 'val');
-              	ajaxJsonRequest("PUT", '/api/emp/', JSON.stringify(form.field), function (result) {
-                	handlerResult(result, editDone)
-            	});
-              	return false;
-          	});
-          	
-          	form.on('submit(cancel)', function (form) {
-          	  	parent.layer.close(index); 
-            	return false;
-        	});
+              //监听提交
+              form.on('submit(edit)', function (form) {
+                  form.field._method = 'PUT';
+                  form.field.role = formSelects.value('role-select', 'val');
+                  ajaxJsonRequest("PUT", '/api/emp/', JSON.stringify(form.field), function (result) {
+                    handlerResult(result, editDone)
+                });
+                  return false;
+              });
+              
+              form.on('submit(cancel)', function (form) {
+                    parent.layer.close(index); 
+                return false;
+            });
     
-          	function addDone(data) {
-              	parent.layer.close(index); 
-              	layer.msg("添加成功", {icon: 6});
-          	}
+              function addDone(data) {
+                  parent.layer.close(index); 
+                  layer.msg("添加成功", {icon: 6});
+              }
     
-          	function editDone(data) {
-              	parent.layer.close(index); 
-              	layer.msg("修改成功", {icon: 6});
-          	}
-      	});
+              function editDone(data) {
+                  parent.layer.close(index); 
+                  layer.msg("修改成功", {icon: 6});
+              }
+          });
     </script>
 </body>
 </html>

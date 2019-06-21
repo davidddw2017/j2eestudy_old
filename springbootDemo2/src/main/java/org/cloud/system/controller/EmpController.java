@@ -28,7 +28,7 @@ public class EmpController {
     @Resource
     private IEmpService service;
 
-    @OperationLog("获取用户列表")
+    @OperationLog("获取雇员列表")
     @GetMapping("/list")
     @ResponseBody
     public PageResultBean<Emp> listEmp(@RequestParam(value = "page", defaultValue = "1") int page,
@@ -38,7 +38,7 @@ public class EmpController {
         return new PageResultBean<Emp>(count, emps);
     }
 
-    @OperationLog("添加用户")
+    @OperationLog("添加雇员")
     @PostMapping
     @ResponseBody
     public ResultBean addEmp(@RequestBody Emp emp) {
@@ -46,7 +46,7 @@ public class EmpController {
         return ResultBean.success(service.save(emp));
     }
 
-    @OperationLog("编辑用户")
+    @OperationLog("编辑雇员")
     @PutMapping
     @ResponseBody
     public ResultBean updateEmp(@RequestBody Emp emp) {
@@ -54,7 +54,7 @@ public class EmpController {
         return ResultBean.success();
     }
 
-    @OperationLog("刪除用户")
+    @OperationLog("刪除雇员")
     @DeleteMapping("/{id}")
     @ResponseBody
     public ResultBean deleteEmp(@PathVariable Long id) {
@@ -62,14 +62,14 @@ public class EmpController {
         return ResultBean.success();
     }
 
-    @OperationLog("删除账号")
+    @OperationLog("禁用雇员")
     @PostMapping("/{id}/disable")
     @ResponseBody
     public ResultBean disable(@PathVariable("id") Long id) {
         return ResultBean.success(service.disableUserByID(id));
     }
 
-    @OperationLog("激活账号")
+    @OperationLog("激活雇员")
     @PostMapping("/{id}/enable")
     @ResponseBody
     public ResultBean enable(@PathVariable("id") Long id) {

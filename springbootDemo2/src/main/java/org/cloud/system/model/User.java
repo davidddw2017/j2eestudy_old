@@ -9,8 +9,8 @@ public class User implements Serializable {
     private Long id;
     private String username;
     private String password;
-    private Boolean locked;
-    private String status;
+    private String email;
+    private Integer status;
     private Date lastLoginTime;
     private Date createTime;
     private List<UserRole> userRoles;
@@ -24,12 +24,20 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getLastLoginTime() {
@@ -70,14 +78,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Boolean getLocked() {
-        return locked;
-    }
-
-    public void setLocked(Boolean locked) {
-        this.locked = locked;
     }
 
     public List<UserRole> getUserRoles() {

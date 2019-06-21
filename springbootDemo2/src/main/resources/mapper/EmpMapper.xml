@@ -46,13 +46,17 @@
     <include refid="selectColumns"/>
     FROM `t_emp` A
     LEFT OUTER JOIN `t_dept` B ON A.department=B.id
-    WHERE A.id=#{id}
+    <where>
+      A.id=#{id}
+    </where>
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="long">
     DELETE FROM
-    `t_emp` 
-    WHERE `t_emp`.id=#{id}
+    `t_emp`
+    <where>
+      `t_emp`.id=#{id}
+    </where>
   </delete>
 
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Emp">
@@ -75,7 +79,9 @@
         email=#{email},
         status=#{status}
     </set>
-    WHERE id=#{id}
+    <where>
+      id=#{id}
+    </where>
   </update>
   
   <update id="updateStatusByPrimaryKey">
@@ -83,7 +89,9 @@
     <set>
       status=#{status}
     </set>
-    WHERE id=#{id}
+    <where>
+      id=#{id}
+    </where>
   </update>
 
 </mapper>

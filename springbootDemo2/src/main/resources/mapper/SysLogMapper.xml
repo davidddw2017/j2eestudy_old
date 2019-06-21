@@ -34,13 +34,17 @@
     SELECT
     <include refid="Base_Column_List"/>
     FROM `t_sys_log`
-    WHERE `t_sys_log`.id=#{id}
+    <where>
+      `t_sys_log`.id=#{id}
+    </where>
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="long">
     DELETE FROM
     `t_sys_log`
-    WHERE `t_sys_log`.id=#{id}
+    <where>
+      `t_sys_log`.id=#{id}
+    </where>
   </delete>
 
   <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="SysLog">
@@ -63,7 +67,9 @@
         ip = #{ip,jdbcType=VARCHAR},
         create_time = #{createTime,jdbcType=TIMESTAMP}
     </set>
-    WHERE id=#{id}
+    <where>
+      id=#{id}
+    </where>
   </update>
 
 </mapper>

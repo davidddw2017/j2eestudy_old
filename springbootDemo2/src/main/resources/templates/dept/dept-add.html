@@ -66,18 +66,18 @@
 
             //监听提交
             form.on('submit(add)', function (form) {
-              	ajaxJsonRequest("POST", '/api/dept', JSON.stringify(form.field), function (result) {
-              		handlerResult(result, addDone)
-          		});
-            	return false;
+                ajaxJsonRequest("POST", '/api/dept', JSON.stringify(form.field), function (result) {
+                    handlerResult(result, addDone)
+                });
+                return false;
             });
 
             //监听提交
             form.on('submit(edit)', function (form) {
-              	ajaxJsonRequest("PUT", '/api/dept', JSON.stringify(form.field), function (result) {
-            		handlerResult(result, editDone)
-        		});
-          		return false;
+                ajaxJsonRequest("PUT", '/api/dept', JSON.stringify(form.field), function (result) {
+                    handlerResult(result, editDone)
+                });
+                return false;
             });
 
             function addDone(data) {

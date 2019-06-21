@@ -24,7 +24,7 @@
 
     <script type="text/html" id="column-toolbar">
         {{#  if(d.id !== '[[${#session.id}]]') { }}
-        	<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="kickout">下线</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="kickout">下线</a>
         {{#  } }}
     </script>
 
@@ -39,7 +39,7 @@
 
             table.render({
                 elem: '#user-table'
-                , url: '/api/user/list'
+                , url: '/api/user/onlinelist'
                 , page: true
                 , limits:[10,20,50]
                 , cols: [
@@ -63,7 +63,7 @@
                 ]
             });
 
-         	// 行点击事件
+            // 行点击事件
             table.on('tool', function (obj) {
                 var data = obj.data;
                 var event = obj.event;

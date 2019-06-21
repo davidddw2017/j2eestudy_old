@@ -48,7 +48,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
             return null;
         }
 
-        if (Boolean.TRUE.equals(user.getLocked())) {
+        if (0==user.getStatus()) {
             LOGGER.info("Account has been disabled explicitly due to being locked");
             return null;
         }

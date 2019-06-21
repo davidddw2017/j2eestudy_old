@@ -14,6 +14,7 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.cloud.common.base.BaseServiceImpl;
 import org.cloud.common.util.IPUtils;
+import org.cloud.common.util.PasswordUtils;
 import org.cloud.system.mapper.RoleMapper;
 import org.cloud.system.mapper.UserMapper;
 import org.cloud.system.model.Role;
@@ -148,6 +149,22 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
             session.stop();
             sessionDAO.delete(session);
         }
+    }
+
+    @Override
+    public boolean disableUserByID(Long id) {
+        return userMapper.updateStatusByPrimaryKey(id, 0) == 1;
+    }
+
+    @Override
+    public boolean enableUserByID(Long id) {
+        return userMapper.updateStatusByPrimaryKey(id, 1) == 1;
+    }
+
+    @Override
+    public void updatePasswordByUserId(Long id, String password) {
+        String encryptPassword = PasswordUtils.generatePassword(password);
+        userMapper.updatePasswordByUserId(id, encryptPassword);
     }
 
 }
