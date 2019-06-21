@@ -1,5 +1,7 @@
 package org.cloud.system.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.cloud.common.util.PageResultBean;
@@ -24,8 +26,9 @@ public class UserController {
     @ResponseBody
     public PageResultBean<UserOnline> listUsers(@RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "limit", defaultValue = "10") int limit) {
-        return new PageResultBean<UserOnline>(userService.getOnlineUserCount(),
-                userService.getOnlineUsers(page, limit));
+        List<UserOnline> userOnlines = userService.getOnlineUsers(page, limit);
+        long count = userService.getOnlineUserCount();
+        return new PageResultBean<UserOnline>(count, userOnlines);
     }
 
     @PostMapping("/kickout")

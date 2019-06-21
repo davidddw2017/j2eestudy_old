@@ -7,8 +7,6 @@ import org.cloud.system.model.Emp;
 
 public interface IEmpService extends BaseService<Emp> {
 
-    List<Emp> getAllByPage(int pageNum, int pageSize);
-
     Long saveBatch(List<Emp> list);
 
     Long updateBatch(List<Emp> list);

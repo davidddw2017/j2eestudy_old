@@ -1,10 +1,10 @@
 package org.cloud.system.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.cloud.common.util.PageResultBean;
 import org.cloud.common.util.ResultBean;
 import org.cloud.system.model.Dept;
 import org.cloud.system.service.IDeptService;
@@ -28,22 +28,19 @@ public class DeptController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Map<String, Object> listDept(
-            @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "limit", defaultValue = "10")int limit) {
-        Map<String, Object> info = new HashMap<>();
-        info.put("data", service.getAllByPage(page, limit));
-        info.put("count", service.getCount(new Dept()));
-        info.put("code", 0);
-        return info;
+    public PageResultBean<Dept> listDept(@RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
+        List<Dept> depts = service.getAll(page, limit);
+        long count = service.getCount(new Dept());
+        return new PageResultBean<Dept>(count, depts);
     }
-    
+
     @PostMapping
     @ResponseBody
     public ResultBean addDept(@RequestBody Dept dept) {
         return ResultBean.success(service.save(dept));
     }
-    
+
     @PutMapping
     @ResponseBody
     public ResultBean updateDept(@RequestBody Dept dept) {
@@ -57,5 +54,5 @@ public class DeptController {
         service.deleteById(id);
         return ResultBean.success();
     }
-    
+
 }

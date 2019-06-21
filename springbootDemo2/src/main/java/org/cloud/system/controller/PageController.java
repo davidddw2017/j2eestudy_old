@@ -3,6 +3,7 @@ package org.cloud.system.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.cloud.common.annotation.OperationLog;
 import org.cloud.common.info.Server;
 import org.cloud.system.model.Dept;
 import org.cloud.system.model.Emp;
@@ -24,6 +25,7 @@ public class PageController {
     @Autowired
     private IDeptService deptService;
 
+    @OperationLog("访问我的桌面")
     @GetMapping("/welcome")
     public String welcome(ModelMap model) {
         model.addAttribute("userCount", 2);
@@ -35,6 +37,7 @@ public class PageController {
         return "welcome";
     }
 
+    @OperationLog("查看近七日登录统计图")
     @GetMapping("/weekLoginCount")
     @ResponseBody
     public List<Integer> recentlyWeekLoginCount() {
@@ -49,6 +52,7 @@ public class PageController {
         return recentlyWeekLoginCount;
     }
 
+    @OperationLog("查看系统信息")
     @GetMapping("/systemInfo")
     public String serverInfo(ModelMap model) throws Exception {
         Server server = new Server();
@@ -57,6 +61,7 @@ public class PageController {
         return "systemInfo";
     }
 
+    @OperationLog("获取用户列表")
     @GetMapping("/empView")
     public String empListView(ModelMap model) throws Exception {
         return "emp/emp-list";
@@ -90,9 +95,14 @@ public class PageController {
     public String deptAddPage(ModelMap model) throws Exception {
         return "dept/dept-add";
     }
-    
+
     @GetMapping("/userOnline")
     public String userOnline(ModelMap model) throws Exception {
         return "user/online-list";
+    }
+    
+    @GetMapping("/syslog")
+    public String syslog(ModelMap model) throws Exception {
+        return "log/syslog-list";
     }
 }

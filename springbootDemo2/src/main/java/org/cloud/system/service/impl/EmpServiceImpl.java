@@ -15,8 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
-
 @Service
 public class EmpServiceImpl extends BaseServiceImpl<EmpMapper, Emp> implements IEmpService {
 
@@ -27,12 +25,6 @@ public class EmpServiceImpl extends BaseServiceImpl<EmpMapper, Emp> implements I
 
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
-
-    @Override
-    public List<Emp> getAllByPage(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        return empMapper.selectAll();
-    }
 
     @Override
     public Long saveBatch(List<Emp> list) {
