@@ -5,11 +5,13 @@ import java.util.Set;
 
 import org.cloud.common.base.BaseService;
 import org.cloud.system.model.User;
+import org.cloud.system.vo.UserOnline;
 
 public interface IUserService extends BaseService<User> {
 
     /**
      * 修改密码
+     * 
      * @param userId
      * @param newPassword
      */
@@ -17,14 +19,15 @@ public interface IUserService extends BaseService<User> {
 
     /**
      * 添加用户-角色关系
+     * 
      * @param userId
      * @param roleIds
      */
     public void correlationRoles(Long userId, Long... roleIds);
 
-
     /**
      * 移除用户-角色关系
+     * 
      * @param userId
      * @param roleIds
      */
@@ -32,6 +35,7 @@ public interface IUserService extends BaseService<User> {
 
     /**
      * 根据用户名查找用户
+     * 
      * @param username
      * @return
      */
@@ -41,13 +45,20 @@ public interface IUserService extends BaseService<User> {
 
     /**
      * 根据用户名查找其权限
+     * 
      * @param username
      * @return
      */
     public Set<String> findPermissions(String username);
-    
-    public List<User> getPageUsers(int pagenum,int pagesize);
-    
+
+    public List<UserOnline> getOnlineUsers();
+
+    public List<UserOnline> getOnlineUsers(int pageNum, int pageSize);
+
+    public Integer getOnlineUserCount();
+
     public void deleteUserRoles(Long uid);
+
+    public void forceLogout(String sessionId);
 
 }

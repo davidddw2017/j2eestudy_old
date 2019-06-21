@@ -1,6 +1,10 @@
 package org.cloud.system.model;
 
-public class RolePermission {
+import java.io.Serializable;
+
+public class RolePermission implements Serializable {
+
+    private static final long serialVersionUID = 1951888956560507904L;
     private Role role;
     private Permission permission;
 

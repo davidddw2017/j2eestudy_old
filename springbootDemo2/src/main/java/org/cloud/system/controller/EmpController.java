@@ -1,13 +1,13 @@
 package org.cloud.system.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
+import org.cloud.common.util.PageResultBean;
 import org.cloud.common.util.ResultBean;
 import org.cloud.system.model.Emp;
 import org.cloud.system.service.IEmpService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,19 +23,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/emp")
 public class EmpController {
 
-    @Autowired
+    @Resource
     private IEmpService service;
 
     @GetMapping("/list")
     @ResponseBody
-    public Map<String, Object> listEmp(
+    public PageResultBean<Emp> listEmp(
             @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "limit", defaultValue = "10")int limit) {
-        Map<String, Object> info = new HashMap<>();
-        info.put("data", service.getAllByPage(page, limit));
-        info.put("count", service.getCount(new Emp()));
-        info.put("code", 0);
-        return info;
+        return new PageResultBean<Emp>(service.getCount(new Emp()), service.getAllByPage(page, limit));
     }
     
     @PostMapping

@@ -90,4 +90,9 @@ public class PageController {
     public String deptAddPage(ModelMap model) throws Exception {
         return "dept/dept-add";
     }
+    
+    @GetMapping("/userOnline")
+    public String userOnline(ModelMap model) throws Exception {
+        return "user/online-list";
+    }
 }

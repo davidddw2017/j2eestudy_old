@@ -36,7 +36,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
             throws AuthenticationException {
-        LOGGER.debug("Shiro开始登录认证");
+        LOGGER.debug("从数据库获取认证信息");
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
         // 根据用户名查询数据库
         String username = token.getUsername();
@@ -49,7 +49,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
         }
 
         if (Boolean.TRUE.equals(user.getLocked())) {
-            LOGGER.info("user locked");
+            LOGGER.info("Account has been disabled explicitly due to being locked");
             return null;
         }
 
@@ -63,25 +63,13 @@ public class ShiroDbRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        String username = (String) principals.getPrimaryPrincipal();
-
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        info.setRoles(userService.findRoles(username));
-        info.setStringPermissions(userService.findPermissions(username));
-
-        return info;
-    }
-
-    @Override
-    protected String getAuthenticationCacheKey(PrincipalCollection principals) {
-        String shiroUser = (String) super.getAvailablePrincipal(principals);
-        return shiroUser;
-    }
-
-    @Override
-    protected String getAuthorizationCacheKey(PrincipalCollection principals) {
-        String shiroUser = (String) super.getAvailablePrincipal(principals);
-        return shiroUser;
+        LOGGER.debug("从数据库获取权限信息");
+        User user = (User) principals.getPrimaryPrincipal();
+        String username = user.getUsername();
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        authorizationInfo.setRoles(userService.findRoles(username));
+        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        return authorizationInfo;
     }
 
     /**

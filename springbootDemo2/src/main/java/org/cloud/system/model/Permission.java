@@ -1,8 +1,11 @@
 package org.cloud.system.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Permission {
+public class Permission implements Serializable {
+
+    private static final long serialVersionUID = -2748561511176769161L;
     private Long id;
     private String permission;
     private String description;

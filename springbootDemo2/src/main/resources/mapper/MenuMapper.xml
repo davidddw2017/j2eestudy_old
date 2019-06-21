@@ -32,7 +32,7 @@
     INNER JOIN
       (SELECT * FROM `t_menu` WHERE parent_id in (SELECT menu_id FROM `t_menu` WHERE parent_id=0)) AS B 
     ON A.menu_id=B.parent_id AND B.level &lt;= #{level}
-    ORDER BY A.menu_id,B.menu_id;
+    ORDER BY A.menu_id,B.menu_id
   </select>
 
 </mapper>

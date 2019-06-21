@@ -1,12 +1,18 @@
 package org.cloud.system.model;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = -5494356339737991298L;
     private Long id;
     private String username;
     private String password;
     private Boolean locked;
+    private String status;
+    private Date lastLoginTime;
+    private Date createTime;
     private List<UserRole> userRoles;
 
     public User() {
@@ -16,6 +22,30 @@ public class User {
         super();
         this.username = username;
         this.password = password;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Long getId() {

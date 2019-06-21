@@ -3,34 +3,49 @@ package org.cloud.common.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordMatcher;
 import org.apache.shiro.crypto.hash.DefaultHashService;
-import org.apache.shiro.session.mgt.SessionManager;
-import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.cloud.common.security.ShiroDbRealm;
-import org.cloud.common.security.ShiroSpringCacheManager;
-import org.springframework.cache.ehcache.EhCacheCacheManager;
-import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
+import org.crazycake.shiro.RedisCacheManager;
+import org.crazycake.shiro.RedisManager;
+import org.crazycake.shiro.RedisSessionDAO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 
 @Configuration
 public class ShiroConfig {
 
-    // 注入自定义的realm，告诉shiro如何获取用户信息来做登录或权限控制
+    @Value("${spring.redis.host}")
+    private String redisHost;
+
+    @Value("${spring.redis.port}")
+    private Integer redisPort;
+
+    /**
+     * 注入自定义的realm，告诉shiro如何获取用户信息来做登录或权限控制
+     * 
+     * @return
+     */
     @Bean(name = "shiroDbRealm")
-    public ShiroDbRealm shiroDbRealm(ShiroSpringCacheManager shiroSpringCacheManager) {
+    public ShiroDbRealm shiroDbRealm() {
         DefaultHashService defaultHashService = new DefaultHashService();
+
+        // 默认算法 SHA-512
         defaultHashService.setHashAlgorithmName("SHA-512");
+
+        // 生成 Hash 值的迭代次数
         defaultHashService.setHashIterations(500000);
+
+        // 是否生成公盐
         defaultHashService.setGeneratePublicSalt(true);
 
         DefaultPasswordService defaultPasswordService = new DefaultPasswordService();
@@ -39,7 +54,7 @@ public class ShiroConfig {
         PasswordMatcher credentialsMatcher = new PasswordMatcher();
         credentialsMatcher.setPasswordService(defaultPasswordService);
 
-        ShiroDbRealm shiroDbRealm = new ShiroDbRealm(shiroSpringCacheManager, credentialsMatcher);
+        ShiroDbRealm shiroDbRealm = new ShiroDbRealm(redisCacheManager(), credentialsMatcher);
 
         // 启用身份验证缓存，即缓存AuthenticationInfo信息，默认false
         shiroDbRealm.setAuthenticationCachingEnabled(true);
@@ -59,21 +74,16 @@ public class ShiroConfig {
      * @return
      */
     @Bean(name = "shiroFilterFactoryBean")
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean() {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-
         // 设置安全管理器
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-
+        shiroFilterFactoryBean.setSecurityManager(securityManager());
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
-
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/");
-
         // 未授权界面
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
-
         Map<String, String> filterMap = new HashMap<String, String>();
         filterMap.put("/static/**", "anon");
         filterMap.put("/webjars/**", "anon");
@@ -89,57 +99,53 @@ public class ShiroConfig {
      * @param realm
      * @return
      */
-    @Bean(name = "securityManager")
-    public DefaultWebSecurityManager securityManager(ShiroDbRealm shiroDbRealm, SessionManager sessionManager,
-            ShiroSpringCacheManager shiroSpringCacheManager) {
+    @Bean
+    public DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-
-        // 设置realm.
-        securityManager.setRealm(shiroDbRealm);
-
-        // 自定义缓存实现 使用redis
-        securityManager.setCacheManager(shiroSpringCacheManager);
-
         // 自定义session管理 使用redis
-        securityManager.setSessionManager(sessionManager);
+        securityManager.setSessionManager(sessionManager());
+        // 设置realm.
+        securityManager.setRealm(shiroDbRealm());
+        SecurityUtils.setSecurityManager(securityManager);
         return securityManager;
     }
 
-    @Bean(name = "sessionManager")
-    public DefaultWebSessionManager sessionManager(ShiroSpringCacheManager shiroSpringCacheManager) {
+    @Bean
+    public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
+        defaultWebSessionManager.setSessionIdUrlRewritingEnabled(false);
+        defaultWebSessionManager.setSessionDAO(redisSessionDAO());
         SimpleCookie simpleCookie = new SimpleCookie("shiro.sesssion");
         simpleCookie.setPath("/");
-
-        EnterpriseCacheSessionDAO enterpriseCacheSessionDAO = new EnterpriseCacheSessionDAO();
-        enterpriseCacheSessionDAO.setActiveSessionsCacheName("activeSessionCache");
-        enterpriseCacheSessionDAO.setCacheManager(shiroSpringCacheManager);
-
-        defaultWebSessionManager.setGlobalSessionTimeout(30 * 60 * 1000);
-        defaultWebSessionManager.setSessionIdCookieEnabled(true);
         defaultWebSessionManager.setSessionIdCookie(simpleCookie);
-        defaultWebSessionManager.setSessionIdUrlRewritingEnabled(false);
-        defaultWebSessionManager.setSessionDAO(enterpriseCacheSessionDAO);
         return defaultWebSessionManager;
     }
 
-    @Bean(name = "shiroSpringCacheManager")
-    public ShiroSpringCacheManager shiroSpringCacheManager(EhCacheCacheManager cacheManager) {
-        ShiroSpringCacheManager shiroSpringCacheManager = new ShiroSpringCacheManager();
-        shiroSpringCacheManager.setCacheManager(cacheManager);
-        return shiroSpringCacheManager;
-    }
-
-    @Bean(name = "cacheManager")
-    public EhCacheCacheManager cacheManager() {
-        EhCacheManagerFactoryBean cacheManagerFactoryBean = new EhCacheManagerFactoryBean();
-        cacheManagerFactoryBean.setConfigLocation(new ClassPathResource("ehcache.xml"));
-        cacheManagerFactoryBean.setShared(true);
-        EhCacheCacheManager ehCacheCacheManager = new EhCacheCacheManager();
-        ehCacheCacheManager.setCacheManager(cacheManagerFactoryBean.getObject());
-        return ehCacheCacheManager;
+    @Bean
+    public RedisCacheManager redisCacheManager() {
+        RedisCacheManager redisCacheManager = new RedisCacheManager();
+        redisCacheManager.setRedisManager(redisManager());
+        redisCacheManager.setExpire(600);
+        redisCacheManager.setPrincipalIdFieldName("id");
+        return redisCacheManager;
     }
     
+    @Bean
+    public RedisSessionDAO redisSessionDAO() {
+        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
+        redisSessionDAO.setExpire(1800);
+        redisSessionDAO.setRedisManager(redisManager());
+        redisSessionDAO.setSessionInMemoryEnabled(false);
+        return redisSessionDAO;
+    }
+
+    @Bean
+    public RedisManager redisManager() {
+        RedisManager redisManager = new RedisManager();
+        redisManager.setHost(redisHost + ":" + redisPort);
+        return redisManager;
+    }
+
     @Bean
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();

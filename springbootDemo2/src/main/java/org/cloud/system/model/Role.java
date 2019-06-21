@@ -1,8 +1,11 @@
 package org.cloud.system.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Role {
+public class Role implements Serializable {
+
+    private static final long serialVersionUID = -4540521964396470475L;
     private Long id;
     private String role;
     private String description;
