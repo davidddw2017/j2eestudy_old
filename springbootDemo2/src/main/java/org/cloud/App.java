@@ -12,7 +12,8 @@ public class App {
     private final static Logger logger = LoggerFactory.getLogger("o.c.y.Main");
 
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication application = new SpringApplication(App.class);
+        application.run(args);
         logger.info("============= SpringBoot Start Success =============");
     }
 }
