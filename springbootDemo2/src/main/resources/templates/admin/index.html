@@ -81,7 +81,7 @@
                                 <a data-th-lay-id="${child.url}" data-th-lay-url="${child.url}">
                                     <cite th:text="${child.menuName}"></cite>
                                 </a>
-                                <th:block th:unless="${#lists.isEmpty(child.children)}" th:include="common/public::menu(${child})" />
+                                <th:block th:unless="${#lists.isEmpty(child.children)}" th:include="admin/common/public::menu(${child})" />
                             </dd>
                         </dl>
                     </li>
@@ -120,7 +120,6 @@
     <script th:src="@{/static/js/common.js}"></script>
     
     <script>
-
         function logout() {
             sessionStorage.removeItem("tabs");
             sessionStorage.removeItem("currentTabId");

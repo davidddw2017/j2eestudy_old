@@ -79,16 +79,16 @@ public class ShiroConfig {
         // 设置安全管理器
         shiroFilterFactoryBean.setSecurityManager(securityManager());
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/admin/login");
         // 登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/");
+        shiroFilterFactoryBean.setSuccessUrl("/admin");
         // 未授权界面
-        shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/admin/unauth");
         Map<String, String> filterMap = new HashMap<String, String>();
         filterMap.put("/static/**", "anon");
         filterMap.put("/webjars/**", "anon");
-        filterMap.put("/login", "anon");
-        filterMap.put("/**", "authc");// 过滤链定义，从上向下顺序执行，一般将/**放在最为下边
+        filterMap.put("/admin/login", "anon");
+        filterMap.put("/admin/**", "authc");// 过滤链定义，从上向下顺序执行，一般将/**放在最为下边
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return shiroFilterFactoryBean;
     }

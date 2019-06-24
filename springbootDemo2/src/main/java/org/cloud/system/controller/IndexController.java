@@ -13,10 +13,10 @@ public class IndexController {
     @Resource
     private IMenuService service;
 
-    @GetMapping(value = { "/", "/main" })
+    @GetMapping(value = { "/admin", "/admin/main" })
     public String index(ModelMap model) {
         model.addAttribute("menus", service.getTreeData(5));
-        return "index";
+        return "admin/index";
     }
     
 }

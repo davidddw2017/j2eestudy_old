@@ -14,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class PageController {
+@RequestMapping("/admin")
+public class AdminController {
 
     @Autowired
     private IEmpService empService;
@@ -34,7 +36,7 @@ public class PageController {
         model.addAttribute("loginLogCount", 51);
         model.addAttribute("sysLogCount", 478);
         model.addAttribute("userOnlineCount", 2);
-        return "welcome";
+        return "admin/welcome";
     }
 
     @OperationLog("查看近七日登录统计图")
@@ -58,62 +60,62 @@ public class PageController {
         Server server = new Server();
         server.copyTo();
         model.addAttribute("server", server);
-        return "systemInfo";
+        return "admin/system/sysinfo-list";
     }
 
     @OperationLog("获取用户列表")
     @GetMapping("/empView")
     public String empListView(ModelMap model) throws Exception {
-        return "emp/emp-list";
+        return "admin/emp/emp-list";
     }
 
     @GetMapping("/empChangeView/{id}")
     public String empUpdatePage(ModelMap model, @PathVariable("id") Long id) throws Exception {
         model.addAttribute("emp", empService.getById(id).orElse(new Emp()));
         model.addAttribute("deptList", deptService.getAll());
-        return "emp/emp-add";
+        return "admin/emp/emp-add";
     }
 
     @GetMapping("/empChangeView")
     public String empAddPage(ModelMap model) throws Exception {
         model.addAttribute("deptList", deptService.getAll());
-        return "emp/emp-add";
+        return "admin/emp/emp-add";
     }
 
     @GetMapping("/deptView")
     public String deptListView(ModelMap model) throws Exception {
-        return "dept/dept-list";
+        return "admin/dept/dept-list";
     }
 
     @GetMapping("/deptChangeView/{id}")
     public String deptUpdatePage(ModelMap model, @PathVariable("id") Long id) throws Exception {
         model.addAttribute("dept", deptService.getById(id).orElse(new Dept()));
-        return "dept/dept-add";
+        return "admin/dept/dept-add";
     }
 
     @GetMapping("/deptChangeView")
     public String deptAddPage(ModelMap model) throws Exception {
-        return "dept/dept-add";
+        return "admin/dept/dept-add";
     }
 
     @GetMapping("/userOnline")
     public String userOnline(ModelMap model) throws Exception {
-        return "user/online-list";
+        return "admin/user/user-online-list";
     }
 
     @GetMapping("/syslog")
     public String syslog(ModelMap model) throws Exception {
-        return "log/syslog-list";
+        return "admin/system/syslog-list";
     }
 
     @GetMapping("/userView")
     public String userView(ModelMap model) throws Exception {
-        return "user/user-list";
+        return "admin/user/user-list";
     }
 
     @GetMapping("/user/{id}/reset")
     public String resetPassword(@PathVariable("id") Integer id, ModelMap model) {
         model.addAttribute("id", id);
-        return "user/user-reset";
+        return "admin/user/user-reset";
     }
 }

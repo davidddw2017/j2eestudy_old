@@ -304,13 +304,13 @@ CREATE TABLE `t_menu`  (
 -- Records of t_menu
 -- ----------------------------
 INSERT INTO `t_menu` VALUES (1, '人事管理', '#', 'layui-icon-picker-securityscan', 1, 0);
-INSERT INTO `t_menu` VALUES (2, '雇员管理', '/empView', NULL, 1, 1);
-INSERT INTO `t_menu` VALUES (3, '部门管理', '/deptView', NULL, 1, 1);
+INSERT INTO `t_menu` VALUES (2, '雇员管理', '/admin/empView', NULL, 1, 1);
+INSERT INTO `t_menu` VALUES (3, '部门管理', '/admin/deptView', NULL, 1, 1);
 INSERT INTO `t_menu` VALUES (4, '系统管理', '#', 'layui-icon-picker-control', 1, 0);
-INSERT INTO `t_menu` VALUES (5, '系统信息', '/systemInfo', 'null', 1, 4);
-INSERT INTO `t_menu` VALUES (6, '在线用户', '/userOnline', NULL, 1, 4);
-INSERT INTO `t_menu` VALUES (7, '操作日志', '/syslog', NULL, 1, 4);
-INSERT INTO `t_menu` VALUES (8, '用户管理', '/userView', NULL, 1, 4);
+INSERT INTO `t_menu` VALUES (5, '系统信息', '/admin/systemInfo', 'null', 1, 4);
+INSERT INTO `t_menu` VALUES (6, '在线用户', '/admin/userOnline', NULL, 1, 4);
+INSERT INTO `t_menu` VALUES (7, '操作日志', '/admin/syslog', NULL, 1, 4);
+INSERT INTO `t_menu` VALUES (8, '用户管理', '/admin/userView', NULL, 1, 4);
 
 -- ----------------------------
 -- Table structure for t_sys_log
