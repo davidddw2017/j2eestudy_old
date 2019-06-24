@@ -98,7 +98,7 @@
                     </ul>
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
-                            <iframe src="welcome" class="layui-iframe"></iframe>
+                            <iframe src="/admin/welcome" class="layui-iframe"></iframe>
                         </div>
                     </div>
                 </div>
@@ -123,9 +123,9 @@
         function logout() {
             sessionStorage.removeItem("tabs");
             sessionStorage.removeItem("currentTabId");
-            $.post('logout', function(result) {
+            $.post('/admin/logout', function(result) {
                 if (result.code==0) {
-                    window.location.href = 'login';
+                    window.location.href = '/admin/login';
                 }
             }, 'json');
         }
