@@ -112,6 +112,11 @@ public class AdminController {
     public String userView(ModelMap model) throws Exception {
         return "admin/user/user-list";
     }
+    
+    @GetMapping("/temp")
+    public String temp(ModelMap model) throws Exception {
+        return "admin/temp";
+    }
 
     @GetMapping("/user/{id}/reset")
     public String resetPassword(@PathVariable("id") Integer id, ModelMap model) {

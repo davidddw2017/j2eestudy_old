@@ -62,6 +62,20 @@ public class EmpController {
         return ResultBean.success();
     }
 
+    /**
+     * 批量删除
+     */
+    @PostMapping("delete")
+    @ResponseBody
+    public ResultBean removeEmp(@RequestBody List<String> ids) {
+        int sum = 0;
+        for (String id : ids) {
+            Emp emp = service.getById(Long.parseLong(id)).orElse(new Emp());
+            sum += service.deleteById(emp.getId());
+        }
+        return ResultBean.successData(sum);
+    }
+
     @OperationLog("禁用雇员")
     @PostMapping("/{id}/disable")
     @ResponseBody
