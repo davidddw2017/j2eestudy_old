@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+
 @Service
 public class EmpServiceImpl extends BaseServiceImpl<EmpMapper, Emp> implements IEmpService {
 
@@ -86,6 +88,17 @@ public class EmpServiceImpl extends BaseServiceImpl<EmpMapper, Emp> implements I
     @Override
     public boolean enableUserByID(Long id) {
         return empMapper.updateStatusByPrimaryKey(id, 1) == 1;
+    }
+
+    @Override
+    public List<Emp> getAllByCondition(String username, String deptName, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return empMapper.selectAllByCondition(username, deptName);
+    }
+
+    @Override
+    public Long getCountByCondition(String username, String deptName) {
+        return empMapper.selectCountByCondition(username, deptName);
     }
 
 }

@@ -55,4 +55,18 @@ public class DeptController {
         return ResultBean.success();
     }
 
+    /**
+     * 批量删除
+     */
+    @PostMapping("delete")
+    @ResponseBody
+    public ResultBean deleteBatchDept(@RequestBody List<String> ids) {
+        int sum = 0;
+        for (String id : ids) {
+            Dept dept = service.getById(Long.parseLong(id)).orElse(new Dept());
+            sum += service.deleteById(dept.getId());
+        }
+        return ResultBean.successData(sum);
+    }
+
 }

@@ -2,6 +2,9 @@
 <!DOCTYPE configuration
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+  <settings>
+    <setting name="logImpl" value="STDOUT_LOGGING" />
+  </settings>
   <typeAliases>
     <typeAlias type="org.cloud.system.model.Emp" alias="Emp" />
     <typeAlias type="org.cloud.system.model.Dept" alias="Dept" />
@@ -11,4 +14,5 @@
     <typeAlias type="org.cloud.system.model.User" alias="User" />
     <typeAlias type="org.cloud.system.model.SysLog" alias="SysLog" />
   </typeAliases>
+
 </configuration>

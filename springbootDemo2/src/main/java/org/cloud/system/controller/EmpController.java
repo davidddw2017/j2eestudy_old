@@ -9,6 +9,7 @@ import org.cloud.common.annotation.OperationLog;
 import org.cloud.common.util.PageResultBean;
 import org.cloud.common.util.ResultBean;
 import org.cloud.system.model.Emp;
+import org.cloud.system.service.IDeptService;
 import org.cloud.system.service.IEmpService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,13 +29,25 @@ public class EmpController {
     @Resource
     private IEmpService service;
 
+    @Resource
+    private IDeptService deptService;
+
     @OperationLog("获取雇员列表")
     @GetMapping("/list")
     @ResponseBody
-    public PageResultBean<Emp> listEmp(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageResultBean<Emp> listEmp(@RequestParam(value = "username", required = false) String username,
+            @RequestParam(value = "deptname", required = false) String deptName,
+            @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "limit", defaultValue = "10") int limit) {
-        List<Emp> emps = service.getAll(page, limit);
-        long count = service.getCount(new Emp());
+        List<Emp> emps = null;
+        long count = 0;
+        if ((deptName == null) && (username == null)) {
+            emps = service.getAll(page, limit);
+            count = service.getCount(new Emp());
+        } else {
+            emps = service.getAllByCondition(username, deptName, page, limit);
+            count = service.getCountByCondition(username, deptName);
+        }
         return new PageResultBean<Emp>(count, emps);
     }
 

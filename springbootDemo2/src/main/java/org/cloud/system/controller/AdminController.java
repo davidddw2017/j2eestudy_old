@@ -66,6 +66,7 @@ public class AdminController {
     @OperationLog("获取用户列表")
     @GetMapping("/empView")
     public String empListView(ModelMap model) throws Exception {
+        model.addAttribute("deptList", deptService.getAll());
         return "admin/emp/emp-list";
     }
 

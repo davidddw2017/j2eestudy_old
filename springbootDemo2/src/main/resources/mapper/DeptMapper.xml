@@ -13,12 +13,12 @@
     SELECT *
     FROM `t_dept`
   </select>
-  
+
   <select id="selectCount" resultType="long">
     SELECT count(*)
     FROM `t_dept`
   </select>
-  
+
   <select id="selectByPrimaryKey" parameterType="long" resultMap="deptMap">
     SELECT *
     FROM `t_dept`
@@ -39,7 +39,7 @@
     INSERT INTO `t_dept` (id,title,description)
     VALUES (NULL,#{title},#{description})
   </insert>
-  
+
   <update id="updateByPrimaryKey" parameterType="Dept">
     UPDATE `t_dept`
     <set>
@@ -50,5 +50,5 @@
       id=#{id}
     </where>
   </update>
-  
+
 </mapper>

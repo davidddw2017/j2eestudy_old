@@ -41,6 +41,37 @@
     FROM `t_emp`
   </select>
   
+  <select id="selectAllByCondition" resultMap="empMap">
+    SELECT
+    <include refid="selectColumns"/>
+    FROM `t_emp` A 
+    LEFT OUTER JOIN `t_dept` B ON A.department=B.id
+    <where>
+      1=1
+      <if test="username != null and username != ''">
+        AND A.username = #{username}
+      </if> 
+      <if test="deptName != null and deptName != ''">
+        AND A.department = #{deptName}
+      </if>
+    </where>
+    ORDER BY A.id
+  </select>
+  
+  <select id="selectCountByCondition" resultType="long">
+    SELECT count(*)
+    FROM `t_emp` A 
+    <where>
+      1=1
+      <if test="username != null and username != ''">
+        AND A.username = #{username}
+      </if> 
+      <if test="deptName != null and deptName != ''">
+        AND A.department = #{deptName}
+      </if>
+    </where>
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="long" resultMap="empMap">
     SELECT
     <include refid="selectColumns"/>
