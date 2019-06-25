@@ -47,6 +47,10 @@
     </where>
   </delete>
 
+  <update id="clearLogs">
+    TRUNCATE TABLE `t_sys_log`
+  </update>
+
   <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="SysLog">
     INSERT INTO `t_sys_log`
       ( username, `operation`, `time`, `method`, params, ip, create_time)

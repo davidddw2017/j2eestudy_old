@@ -28,7 +28,6 @@ public class IPUtils {
         return ip;
     }
 
-
     /**
      * 获取当前计算机 IP
      */
@@ -39,7 +38,6 @@ public class IPUtils {
         }
         return "127.0.0.1";
     }
-
 
     /**
      * 获取当前计算机名称

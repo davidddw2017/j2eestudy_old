@@ -2,17 +2,18 @@ package org.cloud.system.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.cloud.common.base.BaseServiceImpl;
 import org.cloud.system.mapper.MenuMapper;
 import org.cloud.system.model.Menu;
 import org.cloud.system.service.IMenuService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implements IMenuService {
 
-    @Autowired
+    @Resource
     private MenuMapper menuMapper;
     
     @Override

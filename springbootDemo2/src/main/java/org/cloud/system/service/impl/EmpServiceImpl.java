@@ -3,6 +3,8 @@ package org.cloud.system.service.impl;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,20 +14,19 @@ import org.cloud.system.model.Emp;
 import org.cloud.system.service.IEmpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 
-@Service
+@Service("empService")
 public class EmpServiceImpl extends BaseServiceImpl<EmpMapper, Emp> implements IEmpService {
 
     private final Logger logger = LoggerFactory.getLogger(EmpServiceImpl.class);
 
-    @Autowired
+    @Resource
     private EmpMapper empMapper;
 
-    @Autowired
+    @Resource
     private SqlSessionFactory sqlSessionFactory;
 
     @Override

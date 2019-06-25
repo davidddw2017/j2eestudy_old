@@ -6,7 +6,7 @@ import org.cloud.system.model.Dept;
 import org.cloud.system.service.IDeptService;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("deptService")
 public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implements IDeptService {
 
 }

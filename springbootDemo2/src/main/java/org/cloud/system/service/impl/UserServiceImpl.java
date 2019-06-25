@@ -23,19 +23,18 @@ import org.cloud.system.model.User;
 import org.cloud.system.model.UserRole;
 import org.cloud.system.service.IUserService;
 import org.cloud.system.vo.UserOnline;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 
-@Service
+@Service("userService")
 public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implements IUserService {
 
-    @Autowired
-    UserMapper userMapper;
+    @Resource
+    private UserMapper userMapper;
 
-    @Autowired
-    RoleMapper roleMapper;
+    @Resource
+    private RoleMapper roleMapper;
 
     @Resource
     private SessionDAO sessionDAO;

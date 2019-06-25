@@ -4,4 +4,7 @@ import org.cloud.common.base.BaseService;
 import org.cloud.system.model.SysLog;
 
 public interface ISysLogService extends BaseService<SysLog> {
+
+    public void clearLogs();
+
 }

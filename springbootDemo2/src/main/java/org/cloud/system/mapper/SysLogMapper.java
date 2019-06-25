@@ -5,4 +5,6 @@ import org.cloud.system.model.SysLog;
 
 public interface SysLogMapper extends BaseMapper<SysLog> {
 
+    void clearLogs();
+
 }
